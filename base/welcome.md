@@ -39,9 +39,13 @@ Course lecture, discussions, and one-on-one help/troubleshooting will be conduct
 
 Because video is involved, we ask everyone to be respectful and we reserve the right to remove someone if they are being disrespectful or disruptive.
 
+[Learn more about how we use Zoom in our workshops.](./zoom)
+
 ####  Slack
 
 Text based communication will be conducted via a Slack channel. Staff will be monitoring the Slack channel to answer questions (and schedule a Zoom break out room if needed). If you know the answer to someone else's question, feel free to answer it.
+
+[Learn more about how we use Slack in our workshops.](./slack) 
 
 #### Patience
 

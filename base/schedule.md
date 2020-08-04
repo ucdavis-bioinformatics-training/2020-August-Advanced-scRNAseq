@@ -5,7 +5,7 @@
 **8:50 am**  Zoom session starts    
 **9:00 am**  [Welcome, format and expectations and introductions](welcome)    
 **9:30 am**  [Connections, logging in, environment](../prerequisites/cli/logging-in)  
-**9:40 pm**  [Intro](../prerequisites/cli/command-line-intro)to /[Adv](../prerequisites/cli/advanced-command-line)  Command Line  
+**9:40 pm**  [Intro](../prerequisites/cli/command-line-intro) to /[Adv](../prerequisites/cli/advanced-command-line)  Command Line  
 **10:30 am**  [Running jobs on a cluster](../prerequisites/cli/cluster)      
 **11:15 am**  [Genomics/Bioinformatics Talk](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/ucdavis-bioinformatics-training.presentations/master/genomics/Genomics_a_perspective_May_2020.pdf)  
 **12:00 pm** Lunch      

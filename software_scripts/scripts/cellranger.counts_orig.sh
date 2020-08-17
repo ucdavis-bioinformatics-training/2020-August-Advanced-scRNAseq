@@ -8,7 +8,7 @@ echo "Hostname: $(eval hostname)"
 
 ## Where cellranger executable is located
 ## a) by loading a module
-module load cellranger/3.1.0
+module load cellranger/4.0.0
 
 ## b) or, by placing the location of the executables on the path (edit to your location)
 # export PATH=/share/pathtosoftware/bin/:$PATH

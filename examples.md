@@ -40,8 +40,8 @@ Underscores (___)
 #SBATCH --time=60
 #SBATCH --mem=32000 # Memory pool for all cores (see also --mem-per-cpu)
 #SBATCH --partition=production
-#SBATCH --reservation=workshop
-#SBATCH --account=workshop
+#SBATCH --reservation adv_scrna_workshop
+#SBATCH --account adv_scrna_workshop
 #SBATCH --array=1-16
 #SBATCH --output=slurmout/star_%A_%a.out # File to which STDOUT will be written
 #SBATCH --error=slurmout/star_%A_%a.err # File to which STDERR will be written

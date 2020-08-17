@@ -30,7 +30,7 @@ Our cluster requires that you specify a time limit for your job. If your job exc
 
     srun -t 1-00:00:00 -c 4 -n 1 --mem 16000 --partition production --account adv_scrna_workshop --reservation adv_scrna_workshop  --pty /bin/bash
 
-This command is requesting a compute node with a time limit of 30 minutes (-t), one processor (-c), a max memory of 2Gb [2000] (--mem), and then finally, specifying a shell to run in a terminal ("--pty" option). Run this command to get to a compute node when you want to run jobs on the command-line directly.
+This command is requesting a compute node with a time limit of 1 day (-t), 4 processors (-c), a max memory of 16Gb [16000] (--mem), and then finally, specifying a shell to run in a terminal ("--pty" option). Run this command to get to a compute node when you want to run jobs on the command-line directly.
 
 <div class="output">srun: job 29390113 queued and waiting for resources
 srun: job 29390113 has been allocated resources
@@ -39,7 +39,7 @@ bash: /home/msettles/.bashrc: Permission denied
 msettles@drove-13:~$
 </div>
 
-You safely ignore the working and error. Notice that we are no longer on tadpole, but are now on drove-13 in this example, one of our compute nodes.
+You safely ignore the warning and error. Notice that we are no longer on tadpole, but are now on drove-13 in this example, one of our compute nodes.
 
 use Exit on the command line to exit the session
 
@@ -72,7 +72,7 @@ Generally, we do not use any options for sbatch ... we typically give it a scrip
 begin=`date +%s`
 echo $HOSTNAME
 
-# Sleep for 60 seconds
+# Sleep for 5 minutes
 sleep 300
 
 # getting end time to calculate time elapsed
@@ -114,7 +114,7 @@ You can see the job has been running (ST=R) for 6 seconds (TIME=0:06) on node dr
 
 You can give it a job ID, or if you use the "-u" option with your username, you can cancel all of your jobs at once.
 
-    scancel -j 29390121
+    scancel 29390121
 
 will cancel the above job if its still running.
 

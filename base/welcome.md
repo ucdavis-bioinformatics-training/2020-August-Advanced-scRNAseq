@@ -39,13 +39,17 @@ Course lecture, discussions, and one-on-one help/troubleshooting will be conduct
 
 Because video is involved, we ask everyone to be respectful and we reserve the right to remove someone if they are being disrespectful or disruptive.
 
+[Learn more about how we use Zoom in our workshops.](./zoom)
+
 ####  Slack
 
-Text based communication will be conducted via a Slack channel. Staff will be monitoring the Slack channel to answer questions (and schedule a Zoom break out room if needed). If you know the answer to someone elses question, feel free to answer it.
+Text based communication will be conducted via a Slack channel. Staff will be monitoring the Slack channel to answer questions (and schedule a Zoom break out room if needed). If you know the answer to someone else's question, feel free to answer it.
+
+[Learn more about how we use Slack in our workshops.](./slack) 
 
 #### Patience
 
-We ask for a little more patience as this process is also new to us, but we are comitted to providing you the best educational experience we can (under the current conditions).
+We ask for a little more patience as this process is also new to us, but we are committed to providing you the best educational experience we can (under the current conditions).
 
 ### Workshop Goals
 
@@ -68,7 +72,7 @@ Workshop materials are all posted on github, and publicly available
    [https://ucdavis-bioinformatics-training.github.io/](https://ucdavis-bioinformatics-training.github.io/)
 
 
-* This Intro to scRNAseq Workshop
+* This Advanced scRNAseq Workshop
 
    [https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/)
 

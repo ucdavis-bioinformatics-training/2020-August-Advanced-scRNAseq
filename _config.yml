@@ -19,6 +19,10 @@ navigation:
     url: https://raw.githubusercontent.com/ucdavis-bioinformatics-training/ucdavis-bioinformatics-training.presentations/master/singlecell/2020_SingleCell_SampleTalk_DBurkart.pdf
 
   - heading: Support
+  - title: Using Slack in this workshop
+    url: base/slack
+  - title: Using Zoom in this workshop
+    url: base/zoom  
   - title: Cheat Sheets
     url: base/cheatSheetIndex
   - title: Software and Links

@@ -3,9 +3,8 @@ All documentation for the workshop is best viewed from the github.io pages
 [Documentation](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/)
 
 
-May 26, 2020 - May 28, 2020, 9 a.m. - 4:30 p.m daily. **online learning**
+Aug. 17, 2020 - Aug. 19, 2020, 9 a.m. - 4:30 p.m daily. **online learning**
 
-Aug. 17, 2020 - Aug. 19, 2020, 9 a.m. - 4:30 p.m daily. **@ UC Davis**
 
 Contact - UC Davis Bioinformatics Core, [training.bioinformatics@ucdavis.edu](mailto:training.bioinformatics@ucdavis.edu)
 

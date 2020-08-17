@@ -7,10 +7,10 @@ start=`date +%s`
 echo "Hostname: $(eval hostname)"
 
 # If not already on the path
-#export PATH=/share/workshop/adv_scrna/$USER/HTStream/bin:$PATH
+#export PATH=/share/workshop/adv_scrnaseq/$USER/HTStream/bin:$PATH
 
 ## Set the parameters for the run
-basepath=/share/workshop/adv_scrna/$USER/scrnaseq_processing
+basepath=/share/workshop/adv_scrnaseq/$USER/scrnaseq_processing
 resources=${basepath}'/resources'
 fastqpath=${basepath}'/00-RawData/654_small'
 

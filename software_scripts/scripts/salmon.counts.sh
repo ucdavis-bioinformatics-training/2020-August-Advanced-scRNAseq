@@ -9,7 +9,7 @@ echo "Hostname: $(eval hostname)"
 #export PATH=/share/biocore/workshops/2020_scRNAseq/salmon/bin/:$PATH
 
 ## Set the parameters for the run
-basepath=/share/workshop/adv_scrna/${USER}/scrnaseq_processing
+basepath=/share/workshop/adv_scrnaseq/${USER}/scrnaseq_processing
 transcriptome=${basepath}/Reference/GRCm38.salmon_decoys
 fastqs=${basepath}'/01-HTStream'
 output=${basepath}'/654_small_hstream_salmon'

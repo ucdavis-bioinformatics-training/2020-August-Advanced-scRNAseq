@@ -2,7 +2,7 @@
 Login to tadpole and navigate to your directory on the share space.
 
 ```bash
-cd /share/workshop/adv_scrna/$USER
+cd /share/workshop/adv_scrnaseq/$USER
 
 srun -t 1-00:00:00 -c 4 -n 1 --mem 16000 --partition production --account adv_scrna_workshop --reservation adv_scrna_workshop  --pty /bin/bash
 ```
@@ -25,9 +25,9 @@ Recommended sequencing depth is ~5,000 reads per cell.
 The dataset we'll be using is from the [10X website](https://support.10xgenomics.com/single-cell-vdj/datasets). Specifically we'll be using the PBMCs from BALB/c mice dataset.
 
 ```bash
-cd /share/workshop/adv_scrna/$USER/scrnaseq_processing
-mkdir cd /share/workshop/adv_scrna/$USER/scrnaseq_processing/cellranger_vdj
-cd /share/workshop/adv_scrna/$USER/scrnaseq_processing/cellranger_vdj
+cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing
+mkdir cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/cellranger_vdj
+cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/cellranger_vdj
 ln -s /share/biocore/workshops/2020_scRNAseq/VDJ/VDJ_output 00-RawData
 ```
 
@@ -35,8 +35,8 @@ ln -s /share/biocore/workshops/2020_scRNAseq/VDJ/VDJ_output 00-RawData
 
 First lets setup a References folder for our experiment.
 ```bash
-mkdir -p /share/workshop/adv_scrna/$USER/scrnaseq_processing/reference
-cd /share/workshop/adv_scrna/$USER/scrnaseq_processing/reference
+mkdir -p /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/reference
+cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/reference
 ```
 
 We should already have the needed genome and gtf file for Mouse Ensembl version 100
@@ -51,7 +51,7 @@ Description of cellranger vdj can be found [here](https://support.10xgenomics.co
 
 You should already have the Ensembl 100 Mouse genome and GTF file in the reference folder, however if you don't, you can copy then from here.
 ```bash
-cd /share/workshop/adv_scrna/$USER/scrnaseq_processing/reference
+cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/reference
 ln -s /share/biocore/workshops/2020_scRNAseq/Reference/Mus_musculus.GRCm38.dna.primary_assembly.fa .
 ln -s /share/biocore/workshops/2020_scRNAseq/Reference/Mus_musculus.GRCm38.100.gtf .
 ```
@@ -59,7 +59,7 @@ ln -s /share/biocore/workshops/2020_scRNAseq/Reference/Mus_musculus.GRCm38.100.g
 Running cellranger mkvdjref
 
 ```bash
-cd /share/workshop/adv_scrna/$USER/scrnaseq_processing/reference
+cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/reference
 
 module load cellranger/3.1.0
 
@@ -87,7 +87,7 @@ You can also generate vdj references for IMGT sequences. Additional instructions
 ### Running the V(D)J piepline
 
 ```bash
-cd /share/workshop/adv_scrna/$USER/scrnaseq_processing/cellranger_vdj
+cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/cellranger_vdj
 cellranger vdj \
     --id=vdj_v1_mm_balbc_pbmc_b_sm \
     --fastqs=00-RawData \

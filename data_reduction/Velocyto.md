@@ -2,7 +2,7 @@
 Login to tadpole and navigate to your directory on the share space.
 
 ```bash
-cd /share/workshop/adv_scrna/$USER
+cd /share/workshop/adv_scrnaseq/$USER
 
 srun -t 1-00:00:00 -c 4 -n 1 --mem 16000 --partition production --account adv_scrna_workshop --reservation adv_scrna_workshop  --pty /bin/bash
 ```
@@ -27,17 +27,17 @@ We'll use the example dataset from Mapping Comparison section from the paper, sa
 and the cellranger count results folder from the [Mapping](scMapping) section.
 
 ```
-/share/workshop/adv_scrna/msettles/scrnaseq_processing/654_small
+/share/workshop/adv_scrnaseq/msettles/scrnaseq_processing/654_small
 ```
 
 ```bash
-cd /share/workshop/adv_scrna/$USER/scrnaseq_processing
+cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing
 ```
 
 we also need the gtf file used in creating the reference, which should be here:
 
 ```
-/share/workshop/adv_scrna/msettles/scrnaseq_processing/Reference/Mus_musculus.GRCm38.100.filtered.gtf .
+/share/workshop/adv_scrnaseq/msettles/scrnaseq_processing/Reference/Mus_musculus.GRCm38.100.filtered.gtf .
 ```
 
 ### Next lets install the software [velocyto](https://velocyto.org/)
@@ -45,16 +45,16 @@ we also need the gtf file used in creating the reference, which should be here:
 To install velocyto (a python application) we are going to use conda and a virtual environment
 
 ```bash
-cd /share/workshop/adv_scrna/$USER
+cd /share/workshop/adv_scrnaseq/$USER
 module load anaconda3
 conda create -p velocyto
-conda activate /share/workshop/adv_scrna/$USER/velocyto
+conda activate /share/workshop/adv_scrnaseq/$USER/velocyto
 ```
 
 If the environment 'activated' properly, than your prompt should look something like this.
 
 ```
-(/share/workshop/adv_scrna/msettles/velocyto) msettles@tadpole:/share/workshop/adv_scrna/msettles$
+(/share/workshop/adv_scrnaseq/msettles/velocyto) msettles@tadpole:/share/workshop/adv_scrnaseq/msettles$
 ```
 
 If not you can try to initialize your bash
@@ -62,7 +62,7 @@ If not you can try to initialize your bash
 kinit
 conda init bash
 source /home/$USER/.bashrc
-conda activate /share/workshop/adv_scrna/$USER/velocyto
+conda activate /share/workshop/adv_scrnaseq/$USER/velocyto
 ```
 
 Once your conda environment is properly activated you can then install the softare.
@@ -94,7 +94,7 @@ velocyto run10x --help
 Ok, now we are ready to run this on our sample
 
 ```bash
-cd /share/workshop/adv_scrna/$USER/scrnaseq_processing
+cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing
 velocyto run10x  654_small References/Mus_musculus.GRCm38.100.filtered.gtf
 ```
 

@@ -3,7 +3,7 @@
 Login to tadpole and navigate to your directory on the share space.
 
 ```bash
-cd /share/workshop/adv_scrna/$USER
+cd /share/workshop/adv_scrnaseq/$USER
 
 srun -t 1-00:00:00 -c 4 -n 1 --mem 16000 --partition production --account adv_scrna_workshop --reservation adv_scrna_workshop  --pty /bin/bash
 ```
@@ -43,11 +43,11 @@ Compiling the source code with cMake and make
 ```bash
 mkdir build
 cd build
-cmake -DCMAKE_INCLUDE_PATH=/software/boost/1.67/lssc0-linux/include -DCMAKE_LIBRARY_PATH=/software/boost/1.67/lssc0-linux/lib -DCMAKE_INSTALL_PREFIX=/share/workshop/adv_scrna/$USER/HTStream -DBUILD_STATIC_BIN=ON ..
+cmake -DCMAKE_INCLUDE_PATH=/software/boost/1.67/lssc0-linux/include -DCMAKE_LIBRARY_PATH=/software/boost/1.67/lssc0-linux/lib -DCMAKE_INSTALL_PREFIX=/share/workshop/adv_scrnaseq/$USER/HTStream -DBUILD_STATIC_BIN=ON ..
 make
 make test
 make install
-export PATH=/share/workshop/adv_scrna/$USER/HTStream/bin:$PATH
+export PATH=/share/workshop/adv_scrnaseq/$USER/HTStream/bin:$PATH
 ```
 
 ## Streamed preprocessing of sequence data
@@ -120,7 +120,7 @@ that transcripts have been randomly fragmented upstream of the polyA(T).
 
 Lets first make sure that we are in the correct directory.
 ```bash
-cd /share/workshop/adv_scrna/$USER/scrnaseq_processing/
+cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/
 ```
 
 First we need a few prerequisites:
@@ -130,15 +130,15 @@ First we need a few prerequisites:
 The Python script [extract_BC-UMI.py](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/software_scripts/scripts/extract_BC-UMI.py) first 'extracts' the cell barcode and UMI from the specific read and stores it for safe keeping, then later you can 'insert' the barcode and UMI back to where it belongs in the read.
 
 ```bash
-wget -O /share/workshop/adv_scrna/$USER/HTStream/bin/extract_BC-UMI.py https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/software_scripts/scripts/extract_BC-UMI.py
-chmod +x /share/workshop/adv_scrna/$USER/HTStream/bin/extract_BC-UMI.py
+wget -O /share/workshop/adv_scrnaseq/$USER/HTStream/bin/extract_BC-UMI.py https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/software_scripts/scripts/extract_BC-UMI.py
+chmod +x /share/workshop/adv_scrnaseq/$USER/HTStream/bin/extract_BC-UMI.py
 extract_BC-UMI.py -h
 ```
 ### Template Switching Oligo sequence
 
 ```bash
-mkdir -p /share/workshop/adv_scrna/$USER/scrnaseq_processing/resources/
-wget -O /share/workshop/adv_scrna/$USER/scrnaseq_processing/resources/screen.fa https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/datasets/screen.fa
+mkdir -p /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/resources/
+wget -O /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/resources/screen.fa https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/datasets/screen.fa
 ```
 
 ### Counting the number of rRNA reads in a sample
@@ -177,7 +177,7 @@ Save this file to your computer, and rename it to 'mouse_rrna.fasta'.
 
 **OR**
 ```bash
-wget -O /share/workshop/adv_scrna/$USER/scrnaseq_processing/resources/mouse_rrna.fasta https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/datasets/mouse_rrna.fasta
+wget -O /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/resources/mouse_rrna.fasta https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/datasets/mouse_rrna.fasta
 ```
 
 ### Workflow script
@@ -217,12 +217,12 @@ As with all our workflows, we run hts_Stats both as the first application and th
 ### Lets Execute the workflow
 
 ```bash
-cd /share/workshop/adv_scrna/$USER/scrnaseq_processing/
+cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/
 
 wget https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/software_scripts/scripts/scHTStream.sh
 
-mkdir /share/workshop/adv_scrna/$USER/scrnaseq_processing/01-HTStream
-mkdir /share/workshop/adv_scrna/$USER/scrnaseq_processing/01-HTStream/654_small
+mkdir /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/01-HTStream
+mkdir /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/01-HTStream/654_small
 
 bash scHTStream.sh
 ```
@@ -230,5 +230,5 @@ bash scHTStream.sh
 When complete HTStream writes new "preprocessed" file to the out directory and a log.
 
 ```bash
-less /share/workshop/adv_scrna/$USER/scrnaseq_processing/01-HTStream/654_small/654_small_scRNA.log
+less /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/01-HTStream/654_small/654_small_scRNA.log
 ```

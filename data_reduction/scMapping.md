@@ -2,7 +2,7 @@
 Login to tadpole and navigate to your directory on the share space.
 
 ```bash
-cd /share/workshop/adv_scrna/$USER
+cd /share/workshop/adv_scrnaseq/$USER
 
 srun -t 1-00:00:00 -c 4 -n 1 --mem 16000 --partition production --account adv_scrna_workshop --reservation adv_scrna_workshop  --pty /bin/bash
 ```
@@ -15,14 +15,14 @@ This assumes you've first complete this [page](scrna_htstream.md)
 Unfortunately, Cellranger expects a very specific filename format, the bcl2fasq output, so we need to rename the htstream output files.
 
 ```bash
-mv /share/workshop/adv_scrna/msettles/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_R1.fastq.gz  /share/workshop/adv_scrna/msettles/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_S1_L001_R1_001.fastq.gz
-mv /share/workshop/adv_scrna/msettles/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_R2.fastq.gz  /share/workshop/adv_scrna/msettles/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_S1_L001_R2_001.fastq.gz
+mv /share/workshop/adv_scrnaseq/msettles/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_R1.fastq.gz  /share/workshop/adv_scrnaseq/msettles/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_S1_L001_R1_001.fastq.gz
+mv /share/workshop/adv_scrnaseq/msettles/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_R2.fastq.gz  /share/workshop/adv_scrnaseq/msettles/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_S1_L001_R2_001.fastq.gz
 ```
 
 ### For the sake of time (building references can take hours) we are going to link a finished references, but when time allows
 
 ```bash
-cd /share/workshop/adv_scrna/$USER/scrnaseq_processing
+cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing
 ln -s /share/biocore/workshops/2020_scRNAseq/Reference .
 ```
 
@@ -30,8 +30,8 @@ ln -s /share/biocore/workshops/2020_scRNAseq/Reference .
 
 First lets setup a References folder for our experiment.
 ```bash
-mkdir /share/workshop/adv_scrna/$USER/scrnaseq_processing/reference
-cd /share/workshop/adv_scrna/$USER/scrnaseq_processing/reference
+mkdir /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/reference
+cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/reference
 ```
 
 We'll need to download and extract a number of reference files.
@@ -74,7 +74,7 @@ cellranger version 3 has many sub-applications
 10X Genomics provides pre-built references for human and mouse genomes to use with Cell Ranger. Researchers can make custom reference genomes for additional species or add custom marker genes of interest to the reference, e.g. GFP. The following tutorial outlines the steps to build a custom reference using the cellranger mkref pipeline.
 
 ```bash
-cd /share/workshop/adv_scrna/$USER/scrnaseq_processing/reference
+cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/reference
 
 module load cellranger/3.1.0
 
@@ -250,7 +250,7 @@ Cell ranger does produce a pretty html report with the same statistics and some 
 
     ```bash
     # working folder
-    cd /share/workshop/adv_scrna/$USER/scrnaseq_processing
+    cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing
     ```
 
 2. Load the module for cellranger and review cellranger's sub-applications and help docs
@@ -277,7 +277,7 @@ STARsolo output is designed to be a drop-in replacement for 10X CellRanger gene 
 ### Indexing for STAR (takes a long time)
 
 ```bash
-cd /share/workshop/adv_scrna/$USER/scrnaseq_processing/reference
+cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/reference
 module load star/2.7.3a
 mkdir GRCm38.star
 STAR --runThreadN 4 --runMode genomeGenerate --genomeDir GRCm38.star --genomeFastaFiles Mus_musculus.GRCm38.dna.primary_assembly.fa --sjdbGTFfile Mus_musculus.GRCm38.100.filtered.gtf --sjdbOverhang 100
@@ -287,7 +287,7 @@ STAR --runThreadN 4 --runMode genomeGenerate --genomeDir GRCm38.star --genomeFas
 
 Fist Star needs the 10X genomics barcodes whitelist, which can be found [here](https://kb.10xgenomics.com/hc/en-us/articles/115004506263-What-is-a-barcode-whitelist-)
 ```bash
-wget -O /share/workshop/adv_scrna/$USER/scrnaseq_processing/resources/737K-august-2016.txt https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/datasets/737K-august-2016.txt
+wget -O /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/resources/737K-august-2016.txt https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/datasets/737K-august-2016.txt
 ```
 
 ### Exercises
@@ -296,7 +296,7 @@ wget -O /share/workshop/adv_scrna/$USER/scrnaseq_processing/resources/737K-augus
 
     ```bash
     # working folder
-    cd /share/workshop/adv_scrna/$USER/scrnaseq_processing
+    cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing
     ```
 
 2. Load the module for star and review stars help docs
@@ -319,7 +319,7 @@ Alevin works in two phases. In the first phase it quickly parses the read file c
 ### First lets install and build the newest version of salmon (takes a while)
 
 ```bash
-cd /share/workshop/adv_scrna/$USER
+cd /share/workshop/adv_scrnaseq/$USER
 module load cmake
 
 wget https://github.com/COMBINE-lab/salmon/archive/v1.2.1.tar.gz
@@ -329,24 +329,24 @@ cd salmon-1.2.1/
 mkdir build
 cd  build/
 
-cmake -DFETCH_BOOST=TRUE -DCMAKE_INSTALL_PREFIX=/share/workshop/adv_scrna/$USER/salmon-1.2.1 ..
+cmake -DFETCH_BOOST=TRUE -DCMAKE_INSTALL_PREFIX=/share/workshop/adv_scrnaseq/$USER/salmon-1.2.1 ..
 make
 make test
 make install
-export PATH=/share/workshop/adv_scrna/$USER/salmon-1.2.1/build/src/:$PATH
+export PATH=/share/workshop/adv_scrnaseq/$USER/salmon-1.2.1/build/src/:$PATH
 ```
 **OR**
 
 link against my Copy
 ```bash
-ln -s /share/biocore/workshops/2020_scRNAseq/salmon /share/workshop/adv_scrna/$USER/.
+ln -s /share/biocore/workshops/2020_scRNAseq/salmon /share/workshop/adv_scrnaseq/$USER/.
 export PATH=/share/biocore/workshops/2020_scRNAseq/salmon/build/src/:$PATH
 ```
 
 ### Indexing for Salmon (takes a long time)
 
 ```bash
-cd /share/workshop/adv_scrna/$USER/scrnaseq_processing/reference
+cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/reference
 
 ## Create the genomic decoys
 grep ">" Mus_musculus.GRCm38.dna.primary_assembly.fa | cut -d " " -f 1 > decoys.txt
@@ -384,12 +384,12 @@ Fist Salmon needs a transcript to gene mapping database, we can get this from Bi
 
 <img class="doc_images" src="biomart_figures/biomart6.png" alt="biomart6"/>
 
-Save this file to your computer, remove the first line (the header) and rename it to 'txp2gene.tsv', then move to the server into the folder ""/share/workshop/adv_scrna/$USER/scrnaseq_processing/resources"
+Save this file to your computer, remove the first line (the header) and rename it to 'txp2gene.tsv', then move to the server into the folder ""/share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/resources"
 
 **OR** Use mine
 
 ```bash
-wget -O /share/workshop/adv_scrna/$USER/scrnaseq_processing/resources/txp2gene.tsv https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/datasets/txp2gene.tsv
+wget -O /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/resources/txp2gene.tsv https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/datasets/txp2gene.tsv
 ```
 
 ### Exercises
@@ -398,7 +398,7 @@ wget -O /share/workshop/adv_scrna/$USER/scrnaseq_processing/resources/txp2gene.t
 
     ```bash
     # working folder
-    cd /share/workshop/adv_scrna/$USER/scrnaseq_processing
+    cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing
     ```
 
 2. Set the $PATH for the Salmon executable and review salmons help docs

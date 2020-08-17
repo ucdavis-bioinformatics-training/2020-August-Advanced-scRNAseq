@@ -13,7 +13,7 @@ source ~/.bashrc
 
 This assumes you've first complete this [page](project_setup_counting.md)
 
-# A [HTStream](https://github.com/ibest/HTStream) workflow To Process single cell RNA libraries
+# A [HTStream](https://github.com/s4hts/HTStream) workflow To Process single cell RNA libraries
 
 
 ## Installing HTStream version 1.3.2
@@ -245,6 +245,11 @@ less /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/01-HTStream/654_smal
 
 ## Multiqc for HTStream
 
+Intall the HTStream fork of Multiqc
+
 ```bash
+cd /share/workshop/adv_scrnaseq/$USER
 module load anaconda3
+
+git clone https://github.com/s4hts/Multiqc.git
 ```

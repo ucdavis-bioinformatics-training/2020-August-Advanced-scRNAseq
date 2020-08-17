@@ -23,14 +23,14 @@
 ### Tuesday, August 18
 
 **8:50 am**  Zoom session starts  
-**9:00 am** Recap and check everyones session   
-**9:15 am** [Go over mapping indexes](../data_reduction/scMapping)   
-**9:45 am** [Go over mapping scripts](../data_reduction/scMapping)   
-**10:15 am**   15 minute break    
-**10:30 am** Review mapping output     
-**11:00 am**    [Experimental Design Talk](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/ucdavis-bioinformatics-training.presentations/master/singlecell/scRNAseq-expDesign_May_2020.pdf)    
-**11:45 am**   [Review R expectations](../data_analysis/scrna_analysis_prepare)    
-**12:00 pm** Lunch hour      
+**9:00 am**  Recap and check everyones session   
+**9:15 am**  [Go over mapping indexes](../data_reduction/scMapping)   
+**9:45 am**  [Go over mapping scripts](../data_reduction/scMapping)   
+**10:15 am**  15 minute break    
+**10:30 am**  Review mapping output     
+**11:00 am**  Cell Preparation Talk _Dr. Diana Burkart-Waco, UC Davis DNA Technologies Core_  
+**11:45 am**  [Review R expectations](../data_analysis/scrna_analysis_prepare)    
+**12:00 pm**  Lunch hour      
 **1:00 pm**  [Mapping Comparison in R](../data_analysis/Mapping_Comparison_fixed)    
 **1:30 pm**  _Hands on_    
 **2:00 pm**  [Anchoring in R](../data_analysis/anchoring_fixed)    
@@ -48,7 +48,7 @@
 **9:00 am**  Recap and questions  
 **9:30 am**  [Monocle](../data_analysis/adv_scrnaseq_monocle_fixed)   
 **10:45 am**  15 minute break  
-**11:00 am**  Cell Preparation Talk _Dr. Diana Burkart-Waco, UC Davis DNA Technologies Core_   
+**11:00 am**  [Experimental Design Talk](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/ucdavis-bioinformatics-training.presentations/master/singlecell/scRNAseq-expDesign_May_2020.pdf)  
 **12:00 pm**  Lunch     
 **1:00 pm**  [VDJ data reduction](../data_reduction/VDJ)  
 **2:00 pm**  [VDJ anaysis](../data_analysis/VDJ_Analysis_fixed)   

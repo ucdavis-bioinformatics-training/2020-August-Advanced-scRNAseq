@@ -248,8 +248,12 @@ less /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/01-HTStream/654_smal
 Intall the HTStream fork of Multiqc
 
 ```bash
-cd /share/workshop/adv_scrnaseq/$USER
-module load anaconda3
-
-git clone https://github.com/s4hts/Multiqc.git
+cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/
+module load multiqc/htstream.dev0
+multiqc 01-HTStream
 ```
+
+Copy the file multiqc_report.html to your computer and view the report
+
+#### Within your groups, discuss
+* Discuss the report from this script, make sure you understand it?

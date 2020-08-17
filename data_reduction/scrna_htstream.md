@@ -211,7 +211,7 @@ hts_SeqScreener -A scRNA.log -N 'count the number of rRNA reads'\
     -s mouse_rrna.fasta | \
 extract_BC-UMI.py --insert --read 1 | \
 hts_Stats -A scRNA.log -N 'final stats' \
-    -f processed_file -F"
+    -f processed_file -F
 ```
 
 ### Workflow description

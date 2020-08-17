@@ -67,10 +67,6 @@ zless 654_small_S1_L008_R2_001.fastq.gz
 
 Make sure you can identify which lines correspond to a single read and which lines are the header, sequence, and quality values. Press 'q' to exit less.
 
-#### Questions
-* What are the lengths of each read?
-* Can you identify the 10X parts of the read, CellBC+UMI polyT, transcript?
-
 **4b\.**
 
 Then, let's figure out the number of reads in this file. A simple way to do that is to count the number of lines and divide by 4 (because the record of each read uses 4 lines). In order to do this use cat to output the uncompressed file and pipe that to "wc" to count the number of lines:
@@ -83,4 +79,7 @@ zcat 654_small_S1_L008_R1_001.fastq.gz | wc -l
 Divide this number by 4 and you have the number of reads in this file.
 
 #### Questions
+* What are the lengths of each read?
+* Can you identify the 10X parts of the read, CellBC+UMI, polyT, transcript?
 * How many reads?
+* What are the contents of the samples.txt files, how might this suggest you setup your project files.

@@ -68,7 +68,7 @@ We ask for a little more patience as this process is also new to us, but we are 
 
 Workshop materials are all posted on github, and publicly available
 
-    [http://bioinformatics.ucdavis.edu/training](http://bioinformatics.ucdavis.edu/training)
+[http://bioinformatics.ucdavis.edu/training](http://bioinformatics.ucdavis.edu/training)
 
 * Workshop registration site:
 

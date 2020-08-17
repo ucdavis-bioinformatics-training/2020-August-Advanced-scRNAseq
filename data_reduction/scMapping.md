@@ -38,7 +38,7 @@ We'll need to download and extract a number of reference files.
 ```bash
 wget ftp://ftp.ensembl.org/pub/release-100/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
 wget ftp://ftp.ensembl.org/pub/release-100/gtf/mus_musculus/Mus_musculus.GRCm38.100.gtf.gz
-ftp://ftp.ensembl.org/pub/release-100/fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz
+wget ftp://ftp.ensembl.org/pub/release-100/fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz
 gunzip Mus_musculus.GRCm38.100.gtf.gz
 gunzip Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
 gunzip Mus_musculus.GRCm38.cdna.all.fa.gz
@@ -76,7 +76,7 @@ cellranger version 3 has many sub-applications
 ```bash
 cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/reference
 
-module load cellranger/3.1.0
+module load cellranger/4.0.0
 
 cellranger mkgtf Mus_musculus.GRCm38.100.gtf Mus_musculus.GRCm38.100.filtered.gtf \
    --attribute=gene_biotype:protein_coding \
@@ -101,7 +101,7 @@ cellranger mkref \
    --genome=GRCm38.cellranger \
    --fasta=Mus_musculus.GRCm38.dna.primary_assembly.fa \
    --genes=Mus_musculus.GRCm38.100.filtered.gtf \
-   --ref-version=3.1.0
+   --ref-version=4.0.0
 ```
 
 ### Counting (expression matrix) with cellranger
@@ -210,7 +210,7 @@ The following are feature barcoding TAG fields which are not aligned to the geno
 
 #### An example read
 
-Cell Ranger Version 3
+Cell Ranger Version 4
 		J00113:284:HG27NBBXX:8:2202:16741:8594	1040	1	4491502	255	101M	*	0	0	ACTGGACAGTGATTGTGGGGAGCAAGTCCCTCAAGGCATTTAAAACAAAAATCTCGTGTAGCCCCTCAACTGTTCAAGTGGCAGACAAAATAAATTACCAT	-A-AAJJJFAFA-F<<<JFFJFA-AF)JFFAJJFJAFFA7<JFFJA<JJFA<F<JFJJFAJAJFJFFJFJJJJJJJFJJJJJJFJFJFAFJFJJJJF<<<A	NH:i:1	HI:i:1	AS:i:99	nM:i:0	TX:Z:ENSMUST00000027035,+2455,101M;ENSMUST00000192650,+3029,101M;ENSMUST00000195555,+1624,101M	GX:Z:ENSMUSG00000025902	GN:Z:Sox17	fx:Z:ENSMUSG00000025902	RE:A:E	li:i:0	BC:Z:CAGCATCA	QT:Z:AAFFFFJJ	CR:Z:CAAGATCTCGCAAACT	CY:Z:AAFFFJJJJJJJJJJJ	CB:Z:CAAGATCTCGCAAACT-1	UR:Z:GCCGAGACCT	UY:Z:JJJJJJJJJJ	UB:Z:GCCGAGACCT	xf:i:17RG:Z:654:0:1:HG27NBBXX:8
 
 #### 10X genomics sample report
@@ -316,7 +316,7 @@ Alevin works under the same indexing scheme (as salmon) for the reference, and c
 
 Alevin works in two phases. In the first phase it quickly parses the read file containing the CB and UMI information to generate the frequency distribution of all the observed CBs, and creates a lightweight data-structure for fast-look up and correction of the CB. In the second round, alevin utilizes the read-sequences contained in the files to map the reads to the transcriptome, identify potential PCR/sequencing errors in the UMIs, and performs hybrid de-duplication while accounting for UMI collisions. Finally, a post-abundance estimation CB whitelisting procedure is done and a cell-by-gene count matrix is generated.
 
-### First lets install and build the newest version of salmon (takes a while)
+### First lets install and build the newest version of salmon (takes a little while)
 
 ```bash
 cd /share/workshop/adv_scrnaseq/$USER

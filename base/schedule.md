@@ -5,18 +5,18 @@
 **8:50 am**  Zoom session starts    
 **9:00 am**  [Welcome, format and expectations and introductions](welcome)    
 **9:30 am**  [Connections, logging in, environment](../prerequisites/cli/logging-in)  
-**9:40 pm**  [Intro](../prerequisites/cli/command-line-intro) to /[Adv](../prerequisites/cli/advanced-command-line)  Command Line  
-**10:30 am**  [Running jobs on a cluster](../prerequisites/cli/cluster)      
-**11:15 am**  [Genomics/Bioinformatics Talk](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/ucdavis-bioinformatics-training.presentations/master/genomics/Genomics_a_perspective_May_2020.pdf)  
+**9:45 pm**  Review on your own [Intro](../prerequisites/cli/command-line-intro)/[Adv](../prerequisites/cli/advanced-command-line) Command Line  
+**10:15 am**  [Running jobs on a cluster](../prerequisites/cli/cluster)      
+**11:00 am**  [Genomics/Bioinformatics Talk](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/ucdavis-bioinformatics-training.presentations/master/genomics/Genomics_a_perspective_May_2020.pdf)  
 **12:00 pm** Lunch      
 **1:00 pm**   [Expression Matrices](../data_reduction/Expression_Matrix)  
 **1:15 pm**  [Expression Project Setup](../data_reduction/project_setup_counting)  
 **1:45 pm**  [HTStream Preprocessing](../data_reduction/scrna_htstream)  
 **2:00 pm**  _Hands_on_  
 **2:30 pm**  15 minute break  
-**2:45 pm**  [Creating References](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/data_reduction/scMapping)    
+**2:45 pm**  [Creating References](../data_reduction/scMapping)    
 **3:00 pm**  _Hands_on_  
-**3:15 pm** [Read counting with Cellranger/Star solo/Salmon alevin](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/data_reduction/scMapping)    
+**3:15 pm** [Read counting with Cellranger/Star solo/Salmon alevin](../data_reduction/scMapping)    
 **3:45 pm** _Hands_on_  
 **4:45 pm**  Recap and Homework     
 **5:00 pm**  Zoom session ends      
@@ -25,25 +25,23 @@
 
 **8:50 am**  Zoom session starts  
 **9:00 am** Recap and check everyones session   
-**9:15 am** [Go over mapping indexes](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/data_reduction/scMapping)   
-**9:45 am** [Go over mapping scripts](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/data_reduction/scMapping)   
+**9:15 am** [Go over mapping indexes](../data_reduction/scMapping)   
+**9:45 am** [Go over mapping scripts](../data_reduction/scMapping)   
 **10:15 am**   15 minute break    
 **10:30 am** Review mapping output     
 **11:00 am**    [Experimental Design Talk](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/ucdavis-bioinformatics-training.presentations/master/singlecell/scRNAseq-expDesign_May_2020.pdf)    
-**11:45 am**   [Review R expectations](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/data_analysis/scrna_analysis_prepare)    
+**11:45 am**   [Review R expectations](../data_analysis/scrna_analysis_prepare)    
 **12:00 pm** Lunch hour      
-**1:00 pm**  [Mapping Comparison in R](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/data_analysis/Mapping_Comparison_fixed)    
+**1:00 pm**  [Mapping Comparison in R](../data_analysis/Mapping_Comparison_fixed)    
 **1:30 pm**  _Hands on_    
-**2:00 pm**  [Anchoring in R](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/data_analysis/anchoring_fixed)    
+**2:00 pm**  [Anchoring in R](../data_analysis/anchoring_fixed)    
 **2:30 pm**  _Hands on_    
 **3:00 pm**  15 minute break    
-**3:15 pm**  [Shiny App by Keith Mitchell](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/data_analysis/shiny_app_install)     
-        *   [Shiny Practical](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/data_analysis/shiny_practical)    
-        *   [Shiny in AWS](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/data_analysis/shiny_on_aws)    
+**3:15 pm**  [Shiny App by Keith Mitchell](../data_analysis/shiny_app_install)     
+        *   [Shiny Practical](../data_analysis/shiny_practical)    
+        *   [Shiny in AWS](../data_analysis/shiny_on_aws)    
 **4:45 pm**  Recap and Homework    
 **5:00 pm**  Zoom session ends   
-
-**5:00pm - 6:00pm** Happy hour discussion  
 
 ### Wednesday, August 19
 

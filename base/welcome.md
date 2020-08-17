@@ -24,6 +24,19 @@ Our team offers custom bioinformatics services to academic and private organizat
 
    [helpdesk@genomecenter.ucdavis.edu](mailto:helpdesk@genomecenter.ucdavis.edu)
 
+### Workshop Goals
+
+<img src="https://raw.githubusercontent.com/ucdavis-bioinformatics-training/ucdavis-bioinformatics-training.presentations/master/flowcharts/flowchart2.png" alt="flowchart2" width="600px"/>
+
+* Preprocessing scRNA sequence data
+* Running cellranger, star and salmon then comparing
+* Anchoring of samples to other samples
+* Monocle cell trajectory analysis
+* Velocity analysis
+* VDJ T and B cell analysis
+
+* Goal is 30-40% lecture/discussion 60-70% hands-on
+
 ## Structure of the Virtual Workshops
 
 Given the current Covid19 pandemic, and stay in place orders around the world, we've decided to take our popular bioinformatic workshops virtual. Our intent is to offer as close to an experience we can to our in-person workshops. We will hold the same goals and strive for a similar lecture/hand-on ratio. We will be using multiple technologies in order to help facilitate a maximum amount of interaction.
@@ -45,23 +58,17 @@ Because video is involved, we ask everyone to be respectful and we reserve the r
 
 Text based communication will be conducted via a Slack channel. Staff will be monitoring the Slack channel to answer questions (and schedule a Zoom break out room if needed). If you know the answer to someone else's question, feel free to answer it.
 
-[Learn more about how we use Slack in our workshops.](./slack) 
+[Learn more about how we use Slack in our workshops.](./slack)
 
 #### Patience
 
 We ask for a little more patience as this process is also new to us, but we are committed to providing you the best educational experience we can (under the current conditions).
 
-### Workshop Goals
-
-* TODO
-
-* Goal is 30-40% lecture/discussion 60-70% hands-on
-
 ### Workshop Materials
 
 Workshop materials are all posted on github, and publicly available
 
-[http://bioinformatics.ucdavis.edu/training](http://bioinformatics.ucdavis.edu/training)
+    [http://bioinformatics.ucdavis.edu/training](http://bioinformatics.ucdavis.edu/training)
 
 * Workshop registration site:
 

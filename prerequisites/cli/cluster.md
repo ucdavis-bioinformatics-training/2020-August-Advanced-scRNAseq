@@ -108,7 +108,7 @@ Looking at the help documentation, we see that we can filter the results based o
           29390121 productio     name msettles  R       0:06      1 drove-13
 </div>
 
-You can see the job has been running (ST=R) for 6 seconds (TIME=0:06) on node drove-12. The jobid (here 29390121) can be used to cancel the job later, or get additional job information.
+You can see the job has been running (ST=R) for 6 seconds (TIME=0:06) on node drove-13. The jobid (here 29390121) can be used to cancel the job later, or get additional job information.
 
 **2d\.** 'scancel' command is used to cancel jobs (either running or in queue).
 

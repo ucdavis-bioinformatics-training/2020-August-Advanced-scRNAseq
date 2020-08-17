@@ -20,7 +20,7 @@ Single cell Resources
 1. [Satija Lab - cost per cell](https://satijalab.org/costpercell)
 
 Software
-1. [HTStream](https://github.com/ibest/HTStream)
+1. [HTStream](https://github.com/s4hts/HTStream)
 1. [10x CellRanger](https://support.10xgenomics.com/single-cell-gene-expression/software/overview/welcome)
 1. [Star](https://github.com/alexdobin/STAR)
 1. [Salmon](https://salmon.readthedocs.io/en/latest/)

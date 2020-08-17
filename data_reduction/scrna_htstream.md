@@ -6,6 +6,9 @@ Login to tadpole and navigate to your directory on the share space.
 cd /share/workshop/adv_scrnaseq/$USER
 
 srun -t 1-00:00:00 -c 4 -n 1 --mem 16000 --partition production --account adv_scrna_workshop --reservation adv_scrna_workshop  --pty /bin/bash
+
+aklog
+source ~/.bashrc
 ```
 
 This assumes you've first complete this [page](project_setup_counting.md)
@@ -13,7 +16,7 @@ This assumes you've first complete this [page](project_setup_counting.md)
 # A [HTStream](https://github.com/ibest/HTStream) workflow To Process single cell RNA libraries
 
 
-## Installing HTStream version 1.3.0-Beta (branch overlapper_readid_fixes)
+## Installing HTStream version 1.3.2
 
 ### Prerequisites:
 - Cmake 3.2 or greater.
@@ -26,17 +29,15 @@ This assumes you've first complete this [page](project_setup_counting.md)
 
 ```bash
 module load cmake
-module load boost  
+module load boost
 ```
 
 ### Compiling HTStream from source
 
 Downloading the current development version and branch 'overlapper_readid_fixes'. This branch has code within to pull and store the barcode and UMI. It will be integrated into the main branch in the coming weeks.
 ```bash
-git clone https://github.com/ibest/HTStream.git
+git clone https://github.com/s4hts/HTStream.git
 cd HTStream
-git checkout overlapper_readid_fixes
-git pull
 ```
 
 Compiling the source code with cMake and make
@@ -90,7 +91,7 @@ We’ve found it best to perform __QA/QC__ on both the run as a whole (poor samp
 
 Reports such as Basespace for Illumina, are great ways to evaluate the run as a whole, the sequencing provider usually does this for you.  
 
-PCA/MDS plots of the preprocessing summary are a great way to look for technical bias across your experiment. Poor quality samples often appear as outliers on the MDS plot and can ethically be removed due to identified technical issues. You should **NOT** see a trend on the MDS plot associated with any experimental factors. That scenario should raise concerns about technical sample processing bias.
+Plots of the preprocessing summary data are a great way to look for technical bias across your experiment. Poor quality samples often appear as outliers in the plots and can ethically be removed due to identified technical issues. You should **NOT** see a trend in the plots associated with any experimental factors. That scenario should raise concerns about technical sample processing bias.
 
 ### HTStream applications
 
@@ -110,9 +111,11 @@ hts_SuperDeduper: Identify and remove PCR duplicates.
 
 We hope in the long run to include any and all needed preprocessing routines.
 
-**On your own**, spend a moment looking at the help documentation for each application.
+**Within your groups**
 
-## scRNAseq Workflow (10X Genomics)
+* spend a new minutes looking at the help documentation for each application.
+
+## scRNAseq Workflow (10X Genomics data)
 
 A HTStream workflow for processing single cell 3' mRNA libraries.
 This assumes read 1 begins with the cell barcodes (16bp) and UMIs (12bp) followed by a polyT, read 2 contains the transcript read, but may also contain artifacts, polyA,
@@ -130,6 +133,7 @@ First we need a few prerequisites:
 The Python script [extract_BC-UMI.py](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/software_scripts/scripts/extract_BC-UMI.py) first 'extracts' the cell barcode and UMI from the specific read and stores it for safe keeping, then later you can 'insert' the barcode and UMI back to where it belongs in the read.
 
 ```bash
+module load anaconda3
 wget -O /share/workshop/adv_scrnaseq/$USER/HTStream/bin/extract_BC-UMI.py https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/software_scripts/scripts/extract_BC-UMI.py
 chmod +x /share/workshop/adv_scrnaseq/$USER/HTStream/bin/extract_BC-UMI.py
 extract_BC-UMI.py -h
@@ -197,7 +201,7 @@ hts_PolyATTrim -A scRNA.log -N 'trim 3 prime plolyA' \
 hts_NTrimmer -A scRNA.log -N 'Remove any N characters' | \
 hts_QWindowTrim -A scRNA.log -N 'Quality window trim' | \
 hts_LengthFilter -A scRNA.log -N 'Removed any read shorter than 50bp' \
-    -m 50 -s | \
+    -m 50 -s -n | \
 hts_SeqScreener -A scRNA.log -N 'Screen out any potential adapter dimers' \
     --check-read-2 \
     -s screen.fa | \
@@ -212,7 +216,7 @@ hts_Stats -A scRNA.log -N 'final stats' \
 
 ### Workflow description
 
-As with all our workflows, we run hts_Stats both as the first application and the last application to generate full library stats pre and post processing. After hts_Stats, hts_SeqScreener is run using the default screen of PhiX (better safe to just check and remove), we then run hts_SeqScreener again, this time using a multi-fasta file with ribosomal RNA sequences (see '[Counting the number of rRNA reads in a sample](#counting-the-number-of-rrna-reads-in-a-sample)') and the option '-r' to count but not remove any reads that match the screening file. So far each application run in the workflow so far removes entire reads and does not perform  any trimming. Next hts_Overlapper overlap and remove to remove adapter sequences. We then run the custom script extract_BC_UMI.py in mode --extract to save the barcode and UMI in the read id. The next series of applications then trims/cleans reads, hts_PolyATTrim to remove polyA(T) tails, hts_NTrimmer and hts_QWindowTrim to remove any 'N' bases and low quality respectively. Finally, we run hts_LengthFilter to remove any reads shorter than 50bp (-m 50) and produce reverse complement any reads 2 from discarded read 1 (-s). The custom script extract_BC_UMI.py is run 1 more time this time in --insert mode to put the BC|UMI back into read 1. The resulting fastq files will be exclusively paired-end reads remaining.
+As with all our workflows, we run hts_Stats both as the first application and the last application to generate full library stats pre and post processing. After hts_Stats, hts_SeqScreener is run using the default screen of PhiX (better safe to just check and remove), we then run hts_SeqScreener again, this time using a multi-fasta file with ribosomal RNA sequences (see '[Counting the number of rRNA reads in a sample](#counting-the-number-of-rrna-reads-in-a-sample)') and the option '-r' to count but not remove any reads that match the screening file. So far each application run in the workflow so far removes entire reads and does not perform  any trimming. Next hts_Overlapper overlap and remove to remove adapter sequences. We then run the custom script extract_BC_UMI.py in mode --extract to save the barcode and UMI in the read id. The next series of applications then trims/cleans reads, hts_PolyATTrim to remove polyA(T) tails, hts_NTrimmer and hts_QWindowTrim to remove any 'N' bases and low quality respectively. Finally, we run hts_LengthFilter to remove any reads shorter than 50bp (-m 50) and produce reverse complement any reads 2 from discarded read 1 (-s). The custom script extract_BC_UMI.py is run 1 more time this time in --insert mode to put the BC\|UMI back into read 1. The resulting fastq files will be exclusively paired-end reads remaining.
 
 ### Lets Execute the workflow
 
@@ -221,14 +225,26 @@ cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/
 
 wget https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/software_scripts/scripts/scHTStream.sh
 
-mkdir /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/01-HTStream
-mkdir /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/01-HTStream/654_small
-
 bash scHTStream.sh
 ```
 
 When complete HTStream writes new "preprocessed" file to the out directory and a log.
 
 ```bash
-less /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/01-HTStream/654_small/654_small_scRNA.log
+less /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_scRNA.log
+```
+
+#### Within your groups, discuss
+* Discuss the workflow of this script, make sure you understand it?
+* What are the contents of the mouse_rrna.fasta, screen.fa?
+* Given the log file:
+    * How many reads do we remove total?
+    * How many reads were discarded for containing adapter dimer (TSO sequences)?
+    * How many reads were counted as being rRNA reads?
+    * What is the modal bp size of the final library for R1? for R2? Max read size?
+
+## Multiqc for HTStream
+
+```bash
+module load anaconda3
 ```

@@ -191,7 +191,7 @@ pairs on different chromosomes:   49491
 ?kable
 ```
 
-**On your own** : While the Value column is numeric, by default it is being read in as characters. Lets use kable align parameter to left justify name and right justify value.
+**Within your groups** : While the Value column is numeric, by default it is being read in as characters. Lets use kable align parameter to left justify name and right justify value.
 
 ### Lets get the next section, read lengths
 
@@ -310,7 +310,7 @@ ic <- separate(data.frame(ic),col=1, into=c("ID", "cycle", "ins_fwd", "ins_rev",
 
 ### Lets get the coverage data and GC Coverage data
 
-**On your own** : Use what you learned above to extract these 2 sections from the file.
+**Within your groups** : Use what you learned above to extract these 2 sections from the file.
 
 Coverage data
 * First extract the right rows, these begin (^) with IS.
@@ -340,11 +340,11 @@ summarize(is,low=min(`insert size`), max=max(`insert size`), average=mean(`all p
 new_is <- mutate(is,poutward=outward/`all pairs`, pinward=inward/`all pairs`)
 ```
 
-**On your own** Tasks
+**Within your groups** Tasks
 
 Try using "distinct", on is (or new_is) on the outward and inward columns
 
-## **On your own** Tasks
+## **Within your groups** Tasks
 
 1. View the head/tail of some (or even all) of the objects.
 2. Use dim to get an idea of the table dimentions.
@@ -443,9 +443,9 @@ g + geom_line(aes(y=get("inward")),color="blue") +
 
 Ok so now put all these elements together into a single plot, save final plot as 'g'
 
-**On your own** : Ok so put it all together, plot all four columns of the insert size data object, add in legends, reasonable coordinate limits
+**Within your groups** : Ok so put it all together, plot all four columns of the insert size data object, add in legends, reasonable coordinate limits
 
-**On your own** : Play with ggplot2 themes (ex. theme_classic() )
+**Within your groups** : Play with ggplot2 themes (ex. theme_classic() )
 
 
 ```r
@@ -488,7 +488,7 @@ h
 
 ![](Data_in_R_files/figure-html/plot_gc-1.png)<!-- -->
 
-**On your own** : Finish the plot (add labels, etc.). Save the final graph object in h
+**Within your groups** : Finish the plot (add labels, etc.). Save the final graph object in h
 
 ### Plotting the base composition by cycle
 
@@ -510,7 +510,7 @@ i
 
 ![](Data_in_R_files/figure-html/plot_base_comp-1.png)<!-- -->
 
-**On your own** : Using what you learned until now, finish the plot, save it as object i
+**Within your groups** : Using what you learned until now, finish the plot, save it as object i
 
 ### Lets now do a boxplot of basepair
 
@@ -522,7 +522,7 @@ i2
 
 ![](Data_in_R_files/figure-html/actg_boxplot-1.png)<!-- -->
 
-**On your own** : Try some other geometries (Ex. bin2d, col, count, which generate an 'interpretable' plot)
+**Within your groups** : Try some other geometries (Ex. bin2d, col, count, which generate an 'interpretable' plot)
 
 ### Plotting a heatmap of qualities
 
@@ -567,13 +567,13 @@ j
 
 ![](Data_in_R_files/figure-html/heatmap-1.png)<!-- -->
 
-**On your own** Try modifying scale_fill_gradient to scale_fill_distiller.
+**Within your groups** Try modifying scale_fill_gradient to scale_fill_distiller.
 
-**On your own** Play with parts of the plotting function, see how the change modifies the plot.
+**Within your groups** Play with parts of the plotting function, see how the change modifies the plot.
 
 ### Plotting indel lengths
 
-**On your own**  Recreate the indel lengths plot
+**Within your groups**  Recreate the indel lengths plot
 
 
 ```r
@@ -675,7 +675,7 @@ full <- grid.arrange(
 
 ![](Data_in_R_files/figure-html/cluster-1.png)<!-- -->
 
-**on your own** : Play with th grid.arrange function, using the plots you've created to create you own final combined plot.
+**Within your groups** : Play with th grid.arrange function, using the plots you've created to create you own final combined plot.
 
 ### Saving plots as png or pdf
 

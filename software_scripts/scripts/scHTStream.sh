@@ -12,22 +12,27 @@ echo "Hostname: $(eval hostname)"
 ## Set the parameters for the run
 basepath=/share/workshop/adv_scrnaseq/$USER/scrnaseq_processing
 resources=${basepath}'/resources'
-fastqpath=${basepath}'/00-RawData/654_small'
+
+
+fastqpath=${basepath}'/00-RawData'
 
 echo $basepath
 echo $resources
 echo $fastqpath
 
+[[ -d ${basepath}/01-HTStream ]] || mkdir ${basepath}/01-HTStream
+
 for sample in `cat samples.txt`
 do
     outpath=${basepath}/01-HTStream/${sample}_htstream/${sample}_htstream
+    [[ -d ${basepath}/01-HTStream/${sample}_htstream ]] || mkdir ${basepath}/01-HTStream/${sample}_htstream
+
     echo "SAMPLE: ${sample}"
     echo "OUTPUT: ${outpath}"
-    mkdir -p ${outpath}/${sample}
 
     call="hts_Stats -L ${outpath}_scRNA.log -N 'compute stats on original dataset' \
-        -1 ${fastqpath}/${sample}_S*_R1_001.fastq.gz \
-        -2 ${fastqpath}/${sample}_S*_R2_001.fastq.gz  | \
+        -1 ${fastqpath}/${sample}/${sample}_S*_R1_001.fastq.gz \
+        -2 ${fastqpath}/${sample}/${sample}_S*_R2_001.fastq.gz  | \
     hts_SeqScreener -A ${outpath}_scRNA.log -N 'screen for PhiX because I always do' \
         --check-read-2 | \
     hts_Overlapper -A ${outpath}_scRNA.log -N 'overlap reads' | \

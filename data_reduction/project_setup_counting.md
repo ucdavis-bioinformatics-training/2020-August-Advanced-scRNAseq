@@ -78,7 +78,7 @@ zcat 654_small_S1_L008_R1_001.fastq.gz | wc -l
 
 Divide this number by 4 and you have the number of reads in this file.
 
-#### Questions
+#### Within your groups, discuss
 * What are the lengths of each read?
 * Can you identify the 10X parts of the read, CellBC+UMI, polyT, transcript?
 * How many reads?

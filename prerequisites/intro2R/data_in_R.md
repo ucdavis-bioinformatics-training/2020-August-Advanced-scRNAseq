@@ -215,7 +215,7 @@ pairs on different chromosomes:   49491
 ?kable
 ```
 
-**On your own**: While the Value column is numeric, by default it is being read in as characters. Lets use kable align parameter to left justify name and right justify value.
+**Within your groups**: While the Value column is numeric, by default it is being read in as characters. Lets use kable align parameter to left justify name and right justify value.
 
 ### Lets get the next section, read lengths
 
@@ -336,7 +336,7 @@ ic <- separate(data.frame(ic),col=1, into=c("ID", "cycle", "ins_fwd", "ins_rev",
 
 ### Lets get the coverage data and GC Coverage data
 
-**On your own**: Use what you learned above to extract these 2 sections from the file.
+**Within your groups**: Use what you learned above to extract these 2 sections from the file.
 
 Coverage data
 * First extract the right rows, these begin (^) with IS.
@@ -368,11 +368,11 @@ summarize(is,low=min(`insert size`), max=max(`insert size`), average=mean(`all p
 new_is <- mutate(is,poutward=outward/`all pairs`, pinward=inward/`all pairs`)
 ```
 
-**On your own** Tasks
+**Within your groups** Tasks
 
 Try using "distinct", on is (or new_is) on the outward and inward columns
 
-## **On your own** Tasks
+## **Within your groups** Tasks
 
 1. View the head/tail of some (or even all) of the objects.
 2. Use dim to get an idea of the table dimentions.

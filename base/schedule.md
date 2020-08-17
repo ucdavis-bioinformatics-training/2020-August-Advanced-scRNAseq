@@ -18,9 +18,9 @@
 **1:45 pm**  [HTStream Preprocessing](../data_reduction/scrna_htstream)  
 **2:00 pm**  _Hands_on_  
 **2:30 pm**  15 minute break  
-**2:45 pm**  [Creating References](https://ucdavis-bioinformatics-training.github.io/2020-Advanced_Single_Cell_RNA_Seq/data_reduction/scMapping)    
+**2:45 pm**  [Creating References](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/data_reduction/scMapping)    
 **3:00 pm**  _Hands_on_  
-**3:15 pm** [Read counting with Cellranger/Star solo/Salmon alevin](https://ucdavis-bioinformatics-training.github.io/2020-Advanced_Single_Cell_RNA_Seq/data_reduction/scMapping)    
+**3:15 pm** [Read counting with Cellranger/Star solo/Salmon alevin](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/data_reduction/scMapping)    
 **3:45 pm** _Hands_on_  
 **4:45 pm**  Recap and Homework     
 **5:00 pm**  Zoom session ends      
@@ -29,21 +29,21 @@
 
 **8:50 am**  Zoom session starts  
 **9:00 am** Recap and check everyones session   
-**9:15 am** [Go over mapping indexes](https://ucdavis-bioinformatics-training.github.io/2020-Advanced_Single_Cell_RNA_Seq/data_reduction/scMapping)   
-**9:45 am** [Go over mapping scripts](https://ucdavis-bioinformatics-training.github.io/2020-Advanced_Single_Cell_RNA_Seq/data_reduction/scMapping)   
+**9:15 am** [Go over mapping indexes](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/data_reduction/scMapping)   
+**9:45 am** [Go over mapping scripts](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/data_reduction/scMapping)   
 **10:15 am**   15 minute break    
 **10:30 am** Review mapping output     
 **11:00 am**    [Experimental Design Talk](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/ucdavis-bioinformatics-training.presentations/master/singlecell/scRNAseq-expDesign_May_2020.pdf)    
-**11:45 am**   [Review R expectations](https://ucdavis-bioinformatics-training.github.io/2020-Advanced_Single_Cell_RNA_Seq/data_analysis/scrna_analysis_prepare)    
+**11:45 am**   [Review R expectations](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/data_analysis/scrna_analysis_prepare)    
 **12:00 pm** Lunch hour      
-**1:00 pm**  [Mapping Comparison in R](https://ucdavis-bioinformatics-training.github.io/2020-Advanced_Single_Cell_RNA_Seq/data_analysis/Mapping_Comparison_fixed)    
+**1:00 pm**  [Mapping Comparison in R](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/data_analysis/Mapping_Comparison_fixed)    
 **1:30 pm**  _Hands on_    
-**2:00 pm**  [Anchoring in R](https://ucdavis-bioinformatics-training.github.io/2020-Advanced_Single_Cell_RNA_Seq/data_analysis/anchoring_fixed)    
+**2:00 pm**  [Anchoring in R](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/data_analysis/anchoring_fixed)    
 **2:30 pm**  _Hands on_    
 **3:00 pm**  15 minute break    
-**3:15 pm**  [Shiny App by Keith Mitchell](https://ucdavis-bioinformatics-training.github.io/2020-Advanced_Single_Cell_RNA_Seq/data_analysis/shiny_app_install)     
-        *   [Shiny Practical](https://ucdavis-bioinformatics-training.github.io/2020-Advanced_Single_Cell_RNA_Seq/data_analysis/shiny_practical)    
-        *   [Shiny in AWS](https://ucdavis-bioinformatics-training.github.io/2020-Advanced_Single_Cell_RNA_Seq/data_analysis/shiny_on_aws)    
+**3:15 pm**  [Shiny App by Keith Mitchell](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/data_analysis/shiny_app_install)     
+        *   [Shiny Practical](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/data_analysis/shiny_practical)    
+        *   [Shiny in AWS](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/data_analysis/shiny_on_aws)    
 **4:45 pm**  Recap and Homework    
 **5:00 pm**  Zoom session ends   
 

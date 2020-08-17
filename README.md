@@ -1,6 +1,6 @@
 All documentation for the workshop is best viewed from the github.io pages
 
-[Documentation](https://ucdavis-bioinformatics-training.github.io/2020-Advanced_Single_Cell_RNA_Seq/)
+[Documentation](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/)
 
 
 May 26, 2020 - May 28, 2020, 9 a.m. - 4:30 p.m daily. **online learning**
@@ -11,11 +11,11 @@ Contact - UC Davis Bioinformatics Core, [training.bioinformatics@ucdavis.edu](ma
 
 This workshop will cover advanced topics in experimental design, data generation, and analysis of single cell RNA sequencing data on the command line and within the R statistical programming language. Participants will explore software and protocols, create and modify workflows, and diagnose/treat problematic data utilizing high performance computing services. Exercises will be performed on the command line and within R with a provided dataset.
 
-Participants should be familiar with the material covered in [Introduction to Single Cell RNA-Seq Analysis](https://ucdavis-bioinformatics-training.github.io/2020-Advanced_Single_Cell_RNA_Seq/), including the use of the command line and R (see prerequisites section). **Prior experience with the command line and R is a must to fully participate.** If you would like to attend, listen and learn, that is OK, but we will be undable to train you in how to use the command line and R during this workshop.
+Participants should be familiar with the material covered in [Introduction to Single Cell RNA-Seq Analysis](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/), including the use of the command line and R (see prerequisites section). **Prior experience with the command line and R is a must to fully participate.** If you would like to attend, listen and learn, that is OK, but we will be undable to train you in how to use the command line and R during this workshop.
 
 There are no additional prerequisites other than basic familiarity with genomic concepts and single cell sequencing and analysis. This workshop will be held either online via Zoom (May workshop) or on the UCD campus (August workshop) and will run from 9:00am to 5:00pm each day with an hour break for lunch.
 
-Participants must supply their own laptop/desktop with a reliable connection to the internet. The labtop/desktop should have a current versions of [R version 4.0](https://cloud.r-project.org/), [Rstudio](https://rstudio.com/products/rstudio/download/#download), and an application that allows them to ssh into a server (see this [page](https://ucdavis-bioinformatics-training.github.io/2020-Advanced_Single_Cell_RNA_Seq/prerequisites/cli/logging-in))
+Participants must supply their own laptop/desktop with a reliable connection to the internet. The labtop/desktop should have a current versions of [R version 4.0](https://cloud.r-project.org/), [Rstudio](https://rstudio.com/products/rstudio/download/#download), and an application that allows them to ssh into a server (see this [page](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/prerequisites/cli/logging-in))
 
 ### FAQ
 

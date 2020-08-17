@@ -255,11 +255,11 @@ Cell ranger does produce a pretty html report with the same statistics and some 
 
 2. Load the module for cellranger and review cellranger's sub-applications and help docs
 
-3. Review the [cellranger.counts_orig.sh](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Advanced_Single_Cell_RNA_Seq/master/software_scripts/scripts/cellranger.counts_orig.sh) script to map the original fastq files.
+3. Review the [cellranger.counts_orig.sh](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/software_scripts/scripts/cellranger.counts_orig.sh) script to map the original fastq files.
 
 4. Copy contents of the script to your the working folder and run it.
 
-5. Review the [cellranger.counts.sh](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Advanced_Single_Cell_RNA_Seq/master/software_scripts/scripts/cellranger.counts.sh)  script to map the HTStream preprocessed fastq files.
+5. Review the [cellranger.counts.sh](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/software_scripts/scripts/cellranger.counts.sh)  script to map the HTStream preprocessed fastq files.
 
 6. Copy contents of the script to your the working folder and run it.
 
@@ -287,7 +287,7 @@ STAR --runThreadN 4 --runMode genomeGenerate --genomeDir GRCm38.star --genomeFas
 
 Fist Star needs the 10X genomics barcodes whitelist, which can be found [here](https://kb.10xgenomics.com/hc/en-us/articles/115004506263-What-is-a-barcode-whitelist-)
 ```bash
-wget -O /share/workshop/adv_scrna/$USER/scrnaseq_processing/resources/737K-august-2016.txt https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Advanced_Single_Cell_RNA_Seq/master/datasets/737K-august-2016.txt
+wget -O /share/workshop/adv_scrna/$USER/scrnaseq_processing/resources/737K-august-2016.txt https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/datasets/737K-august-2016.txt
 ```
 
 ### Exercises
@@ -301,7 +301,7 @@ wget -O /share/workshop/adv_scrna/$USER/scrnaseq_processing/resources/737K-augus
 
 2. Load the module for star and review stars help docs
 
-3. Review the [star.counts.sh](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Advanced_Single_Cell_RNA_Seq/master/software_scripts/scripts/star.counts.sh) script to map the HTStream preprocessed fastq files.
+3. Review the [star.counts.sh](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/software_scripts/scripts/star.counts.sh) script to map the HTStream preprocessed fastq files.
 
 4. Copy contents of the script to your the working folder and run it.
 
@@ -389,7 +389,7 @@ Save this file to your computer, remove the first line (the header) and rename i
 **OR** Use mine
 
 ```bash
-wget -O /share/workshop/adv_scrna/$USER/scrnaseq_processing/resources/txp2gene.tsv https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Advanced_Single_Cell_RNA_Seq/master/datasets/txp2gene.tsv
+wget -O /share/workshop/adv_scrna/$USER/scrnaseq_processing/resources/txp2gene.tsv https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/datasets/txp2gene.tsv
 ```
 
 ### Exercises
@@ -403,6 +403,6 @@ wget -O /share/workshop/adv_scrna/$USER/scrnaseq_processing/resources/txp2gene.t
 
 2. Set the $PATH for the Salmon executable and review salmons help docs
 
-3. Review the [salmon.counts.sh](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Advanced_Single_Cell_RNA_Seq/master/software_scripts/scripts/salmon.counts.sh) script to map the HTStream preprocessed fastq files.
+3. Review the [salmon.counts.sh](https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/software_scripts/scripts/salmon.counts.sh) script to map the HTStream preprocessed fastq files.
 
 4. Copy contents of the script to your the working folder and run it.

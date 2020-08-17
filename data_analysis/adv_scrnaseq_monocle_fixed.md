@@ -10,7 +10,7 @@ output:
 To download the Monocle R Markdown document, run:
 
 ```r
-download.file("https://github.com/ucdavis-bioinformatics-training/2020-Advanced_Single_Cell_RNA_Seq/raw/master/data_analysis/adv_scrnaseq_monocle.Rmd", "adv_scrnaseq_monocle.Rmd")
+download.file("https://github.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/raw/master/data_analysis/adv_scrnaseq_monocle.Rmd", "adv_scrnaseq_monocle.Rmd")
 ```
 
 # About Monocle
@@ -23,9 +23,9 @@ library(monocle3, warn.conflicts = FALSE, quietly = TRUE)
 
 library(dplyr, warn.conflicts = FALSE, quietly = TRUE)
 
-download.file("https://github.com/ucdavis-bioinformatics-training/2020-Advanced_Single_Cell_RNA_Seq/raw/master/datasets/monocle3_expression_matrix.rds", "monocle3_expression_matrix.rds")
-download.file("https://github.com/ucdavis-bioinformatics-training/2020-Advanced_Single_Cell_RNA_Seq/raw/master/datasets/monocle3_cell_metadata.rds", "monocle3_cell_metadata.rds")
-download.file("https://github.com/ucdavis-bioinformatics-training/2020-Advanced_Single_Cell_RNA_Seq/blob/master/datasets/monocle3_gene_metadata.rds?raw=true", "monocle3_gene_metadata.rds")
+download.file("https://github.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/raw/master/datasets/monocle3_expression_matrix.rds", "monocle3_expression_matrix.rds")
+download.file("https://github.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/raw/master/datasets/monocle3_cell_metadata.rds", "monocle3_cell_metadata.rds")
+download.file("https://github.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/blob/master/datasets/monocle3_gene_metadata.rds?raw=true", "monocle3_gene_metadata.rds")
 ```
 
 # Setting up monocle3 cell_data_set object

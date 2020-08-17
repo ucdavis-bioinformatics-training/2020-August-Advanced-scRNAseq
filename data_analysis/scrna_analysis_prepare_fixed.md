@@ -115,19 +115,19 @@ Then uncompress the zip File, into the project folder
 
 In the R console run the following command
 ```r
-download.file("https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Advanced_Single_Cell_RNA_Seq/master/data_analysis/Mapping_Comparison.Rmd", "Mapping_Comparison.Rmd")
+download.file("https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/data_analysis/Mapping_Comparison.Rmd", "Mapping_Comparison.Rmd")
 ```
 
-### Download the ensembl ids to gene symbols from biomart. More info on how to create this can be found here: [scMapping](https://ucdavis-bioinformatics-training.github.io/2020-Advanced_Single_Cell_RNA_Seq/data_reduction/scMapping)
+### Download the ensembl ids to gene symbols from biomart. More info on how to create this can be found here: [scMapping](https://ucdavis-bioinformatics-training.github.io/2020-August-Advanced-scRNAseq/data_reduction/scMapping)
 ```r
-download.file("https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Advanced_Single_Cell_RNA_Seq/master/datasets/ens2sym.txt", "ens2sym.txt")
+download.file("https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/datasets/ens2sym.txt", "ens2sym.txt")
 ```
 
 ### Download the template Markdown workshop document Anchoring and open it.
 
 In the R console run the following command
 ```r
-download.file("https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-Advanced_Single_Cell_RNA_Seq/master/data_analysis/anchoring.Rmd", "anchoring.Rmd")
+download.file("https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/data_analysis/anchoring.Rmd", "anchoring.Rmd")
 ```
 
 ### Edit the file YAML portion

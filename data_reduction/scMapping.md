@@ -53,6 +53,7 @@ Description of cellranger can be found [here](https://support.10xgenomics.com/si
 cellranger version 3 has many sub-applications
 
 SUBCOMMANDS:
+
 |:--|:--|
 |    count    |            Count gene expression and feature barcoding reads from a single sample and GEM well |
 |    vdj       |          Assembles single-cell VDJ receptor sequences from 10x Immune Profiling libraries |

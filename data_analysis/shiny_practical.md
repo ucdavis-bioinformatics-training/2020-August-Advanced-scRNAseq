@@ -6,9 +6,9 @@ with the data in order to explore what next steps can be taken towards producing
 further analyses are relevant to the biological question. 
 
 Manual intervention (such as clustering) with the Seurat objects is often needed following this exploration. The hope 
-is for the app to enables some of these capabilities in the near future. Lets do some exercises to see how might use the
-app to properly infer what custom clustering may need to be done.  
-
+is for the app to enables some of these capabilities in the near future. Any additional suggestions for helpful features
+is highly appreciated. Lets do some exercises to see how might use the app to properly infer what custom clustering may 
+need to be done.  
 
 
 ### Exercises
@@ -18,9 +18,9 @@ related compared to the other clusters?
 
 2) Extracting biological meaning in your data is an important part of scRNA-seq analysis. Typically this can be done by
 looking through literature to confirm markers for cell types from your sample type. 
-    -The data used for our analysis is from the follwoing paper: https://pubmed.ncbi.nlm.nih.gov/31733517/
-    -Check out the paper that this data is from, can you recognize any similar patterns? 
-    -Can you think of anything you might do to the Seurat object that might enable better analysis with the app based on the paper?
+    - The data used for our analysis is from the follwoing paper: https://pubmed.ncbi.nlm.nih.gov/31733517/
+    - Check out the paper that this data is from, why might it be difficult to extract the same meaning as seen in 
+    Figure 1, panel C and D. 
 
 3) Run the app with the .RDS file that we created in the Anchoring Lecture. (Hint: you will need to change one line
 in the app.R file). What are some differences you notice when doing the comparison?

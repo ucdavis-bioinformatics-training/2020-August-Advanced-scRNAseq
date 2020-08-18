@@ -53,8 +53,8 @@ s_cellranger_orig
 ```
 
 <div class='r_output'> An object of class Seurat 
- 15256 features across 4939 samples within 1 assay 
- Active assay: RNA (15256 features, 0 variable features)
+ 15203 features across 4907 samples within 1 assay 
+ Active assay: RNA (15203 features, 0 variable features)
 </div>
 ```r
 cellranger_htstream <- Read10X_h5("Adv_comparison_outputs/654_htstream/outs/filtered_feature_bc_matrix.h5")
@@ -63,12 +63,12 @@ s_cellranger_hts
 ```
 
 <div class='r_output'> An object of class Seurat 
- 15252 features across 4933 samples within 1 assay 
- Active assay: RNA (15252 features, 0 variable features)
+ 15197 features across 4918 samples within 1 assay 
+ Active assay: RNA (15197 features, 0 variable features)
 </div>
 ```r
 ## STAR
-star <- Read10X("Adv_comparison_outputs/654_htstream_star/outs/filtered_feature_bc_matrix" )
+star <- Read10X("Adv_comparison_outputs/654_htstream_star/outs/filtered_feature_bc_matrix")
 s_star_hts <- CreateSeuratObject(counts = star, min.cells = 3, min.features = 200, project = "star")
 s_star_hts
 ```
@@ -112,8 +112,8 @@ s_salmon_hts
 ```
 
 <div class='r_output'> An object of class Seurat 
- 15630 features across 3918 samples within 1 assay 
- Active assay: RNA (15630 features, 0 variable features)
+ 15634 features across 3918 samples within 1 assay 
+ Active assay: RNA (15634 features, 0 variable features)
 </div>
 ```r
 # Need to Check Rows names/Col names before merge 
@@ -136,8 +136,8 @@ head(colnames(s_star_hts))
 head(colnames(s_salmon_hts))
 ```
 
-<div class='r_output'> [1] "TGGGAAGCACTACAGT" "CACATAGAGACTAGGC" "GTTTCTAGTTCCACAA" "TACTCATCATAGGATA"
- [5] "CACAGGCCAATCTGCA" "GTAGGCCAGGACAGCT"
+<div class='r_output'> [1] "CGGACACCATTCACTT" "ACATACGAGAGTGAGA" "CTCACACAGAATTGTG" "CACACTCTCGGCCGAT"
+ [5] "CACAGGCCAATCTGCA" "TACTCATCATAGGATA"
 </div>
 ```r
 s_cellranger_orig <- RenameCells(s_cellranger_orig, new.names = sapply(X = strsplit(colnames(s_cellranger_orig), split = "-"), FUN = "[", 1))
@@ -151,8 +151,8 @@ s_merged
 ```
 
 <div class='r_output'> An object of class Seurat 
- 17218 features across 17889 samples within 1 assay 
- Active assay: RNA (17218 features, 0 variable features)
+ 17597 features across 17842 samples within 1 assay 
+ Active assay: RNA (17597 features, 0 variable features)
 </div>
 ```r
 head(colnames(s_merged))
@@ -166,9 +166,9 @@ head(colnames(s_merged))
 tail(colnames(s_merged))
 ```
 
-<div class='r_output'> [1] "salmon.hts_AAAGTAGGTACGAAAT" "salmon.hts_GTGCATAGTAAACACA"
- [3] "salmon.hts_CGATGGCCAGGTCTCG" "salmon.hts_ATCCGAAGTGCTGTAT"
- [5] "salmon.hts_ACACTGATCGCCCTTA" "salmon.hts_ACACCAAGTGTGACCC"
+<div class='r_output'> [1] "salmon.hts_TTGACTTAGCTTCGCG" "salmon.hts_AAAGTAGGTACGAAAT"
+ [3] "salmon.hts_CTTTGCGAGGCGTACA" "salmon.hts_ACACCAAGTGTGACCC"
+ [5] "salmon.hts_ACACTGATCGCCCTTA" "salmon.hts_ATCCGAAGTGCTGTAT"
 </div>
 ```r
 table(s_merged$orig.ident)
@@ -176,7 +176,7 @@ table(s_merged$orig.ident)
 
 <div class='r_output'> 
      cellranger cellranger_hts         salmon           star 
-           4939           4933           3918           4099
+           4907           4918           3918           4099
 </div>
 ```r
 table(table(sapply(X = strsplit(colnames(s_merged), split = "_"), FUN = "[", 2)))
@@ -184,7 +184,7 @@ table(table(sapply(X = strsplit(colnames(s_merged), split = "_"), FUN = "[", 2))
 
 <div class='r_output'> 
     1    2    3    4 
-   49  735  418 3779
+   55  719  411 3779
 </div>
 ### The percentage of reads that map to the mitochondrial genome
 
@@ -207,8 +207,8 @@ slotNames(s_merged)
 ```
 
 <div class='r_output'>  [1] "assays"       "meta.data"    "active.assay" "active.ident" "graphs"      
-  [6] "neighbors"    "reductions"   "images"       "project.name" "misc"        
- [11] "version"      "commands"     "tools"
+  [6] "neighbors"    "reductions"   "project.name" "misc"         "version"     
+ [11] "commands"     "tools"
 </div>
 
 ```r
@@ -216,24 +216,24 @@ head(s_merged[[]])
 ```
 
 <div class='r_output'>                          orig.ident nCount_RNA nFeature_RNA percent.mito
- cr.orig_AAACCTGAGATCACGG cellranger       2501         1354    7.3570572
- cr.orig_AAACCTGAGCATCATC cellranger       2703         1353    0.8139105
- cr.orig_AAACCTGAGCGCTCCA cellranger       2912         1550    3.7087912
- cr.orig_AAACCTGAGTGGGATC cellranger       3735         1954    0.5622490
- cr.orig_AAACCTGCAGACAGGT cellranger       1123          809    1.2466607
- cr.orig_AAACCTGCATCATCCC cellranger        535          428    5.7943925
+ cr.orig_AAACCTGAGATCACGG cellranger       2452         1326    7.4225122
+ cr.orig_AAACCTGAGCATCATC cellranger       2655         1329    0.8286252
+ cr.orig_AAACCTGAGCGCTCCA cellranger       2853         1529    3.7504381
+ cr.orig_AAACCTGAGTGGGATC cellranger       3636         1912    0.5500550
+ cr.orig_AAACCTGCAGACAGGT cellranger       1104          795    1.3586957
+ cr.orig_AAACCTGCATCATCCC cellranger        514          412    5.8365759
 </div>
 ```r
 head(s_merged@meta.data)
 ```
 
 <div class='r_output'>                          orig.ident nCount_RNA nFeature_RNA percent.mito
- cr.orig_AAACCTGAGATCACGG cellranger       2501         1354    7.3570572
- cr.orig_AAACCTGAGCATCATC cellranger       2703         1353    0.8139105
- cr.orig_AAACCTGAGCGCTCCA cellranger       2912         1550    3.7087912
- cr.orig_AAACCTGAGTGGGATC cellranger       3735         1954    0.5622490
- cr.orig_AAACCTGCAGACAGGT cellranger       1123          809    1.2466607
- cr.orig_AAACCTGCATCATCCC cellranger        535          428    5.7943925
+ cr.orig_AAACCTGAGATCACGG cellranger       2452         1326    7.4225122
+ cr.orig_AAACCTGAGCATCATC cellranger       2655         1329    0.8286252
+ cr.orig_AAACCTGAGCGCTCCA cellranger       2853         1529    3.7504381
+ cr.orig_AAACCTGAGTGGGATC cellranger       3636         1912    0.5500550
+ cr.orig_AAACCTGCAGACAGGT cellranger       1104          795    1.3586957
+ cr.orig_AAACCTGCATCATCCC cellranger        514          412    5.8365759
 </div>
 #### Question(s)
 
@@ -284,7 +284,7 @@ FeatureScatter(
 RidgePlot(s_merged, features="nCount_RNA")
 ```
 
-<div class='r_output'> Picking joint bandwidth of 338
+<div class='r_output'> Picking joint bandwidth of 335
 </div>
 ![](Mapping_Comparison_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
 
@@ -292,7 +292,7 @@ RidgePlot(s_merged, features="nCount_RNA")
 RidgePlot(s_merged, features="nFeature_RNA")
 ```
 
-<div class='r_output'> Picking joint bandwidth of 106
+<div class='r_output'> Picking joint bandwidth of 105
 </div>
 ![](Mapping_Comparison_files/figure-html/unnamed-chunk-7-2.png)<!-- -->
 
@@ -300,7 +300,7 @@ RidgePlot(s_merged, features="nFeature_RNA")
 RidgePlot(s_merged, features="percent.mito")
 ```
 
-<div class='r_output'> Picking joint bandwidth of 0.367
+<div class='r_output'> Picking joint bandwidth of 0.37
 </div>
 ![](Mapping_Comparison_files/figure-html/unnamed-chunk-7-3.png)<!-- -->
 
@@ -332,40 +332,40 @@ s_merged <- RunPCA(s_merged, features = VariableFeatures(object = s_merged))
 ```
 
 <div class='r_output'> PC_ 1 
- Positive:  Sncg, Ubb, Txn1, Fxyd2, Atp6v0b, Lxn, Sh3bgrl3, Rabac1, Dctn3, Pfn1 
- 	   Ppia, Fez1, Ndufa11, Cisd1, Ndufa4, Atp6v1f, Atpif1, S100a10, Psmb2, Psmb6 
- 	   S100a6, Tmem45b, Prdx2, Elob, Nme1, Cox6a1, Gabarapl2, Bex2, Pop5, Bex3 
- Negative:  Adcyap1, Celf4, Gap43, Kit, Atp2b4, Ngfr, Gal, Fxyd7, Lynx1, Spock1 
- 	   Enah, Meg3, Pcp4, Mt1, Nptn, Eno2, 6330403K07Rik, Syt2, Map2, Unc80 
- 	   Gpx3, Sv2b, S1pr3, Fgf1, Ptn, Cntn1, Dbpht2, Malat1, S100b, Faim2 
+ Positive:  Adcyap1, Celf4, Gap43, Kit, Ngfr, Gal, Meg3, Fxyd7, Lynx1, Enah 
+ 	   Spock1, Pcp4, 6330403K07Rik, Mt1, Eno2, Syt2, Map2, Gpx3, Sv2b, S1pr3 
+ 	   Malat1, Fgf1, Dbpht2, Ptn, Cntn1, Scg2, Faim2, S100b, Npy1r, Stx1b 
+ Negative:  Sncg, Ubb, Txn1, Fxyd2, Atp6v0b, Lxn, Sh3bgrl3, Rabac1, Dctn3, Pfn1 
+ 	   Ppia, Fez1, Ndufa11, Cisd1, Ndufa4, Atp6v1f, Atpif1, S100a10, S100a6, Psmb2 
+ 	   Psmb6, Tmem45b, Prdx2, Elob, Nme1, Gabarapl2, Cox6a1, Bex2, Pop5, Bex3 
  PC_ 2 
- Positive:  Cntn1, S100b, Nefh, Thy1, Cplx1, Tagln3, Sv2b, Hopx, Slc17a7, Ntrk3 
- 	   Lrrn1, Nefm, Atp1b1, Vsnl1, Atp2b2, Nefl, Nat8l, Chchd10, Scn8a, Vamp1 
- 	   Scn1a, Scn1b, Syt2, Mcam, Endod1, Kcna2, Lynx1, Sh3gl2, Scn4b, Cpne6 
- Negative:  Cd24a, Malat1, Dusp26, Tmem233, Mal2, Prkca, Cd9, Osmr, Tmem158, Nppb 
- 	   Ift122, Cd44, Carhsp1, Calca, Sst, Tac1, Arpc1b, Npy2r, Gadd45g, Gm525 
- 	   Gna14, Adcyap1, Bhlhe41, Cd82, Atpaf2, Gpx3, Adk, Scg2, Sntb1, Nts 
+ Positive:  Cntn1, S100b, Nefh, Thy1, Cplx1, Tagln3, Hopx, Sv2b, Ntrk3, Lrrn1 
+ 	   Slc17a7, Nefm, Atp1b1, Atp2b2, Chchd10, Vsnl1, Nat8l, Nefl, Scn8a, Scn1a 
+ 	   Vamp1, Kcna2, Mcam, Scn1b, Endod1, Syt2, Lynx1, Sh3gl2, Scn4b, Cpne6 
+ Negative:  Cd24a, Malat1, Tmem233, Dusp26, Mal2, Prkca, Cd9, Osmr, Tmem158, Nppb 
+ 	   Carhsp1, Ift122, Cd44, Sst, Arpc1b, Calca, Npy2r, Gna14, Atpaf2, Gm525 
+ 	   Gadd45g, Tac1, Bhlhe41, Cd82, Adk, Meg3, Gng2, Nts, Scg2, Sntb1 
  PC_ 3 
- Positive:  Gm10925, Gm28661, Rps7-ps3, Rpl10-ps3, Gm28437, Gm21981, Gm45234, Rpl9-ps6, Gm20390, Gm21988 
- 	   Rps27rt, Rpl27-ps3, Gm45713, Gm10177, Gm10288, Gm10175, Kxd1, Rnasek, Gm8430, Rpl10a-ps1 
- 	   Atp5o, Rpl17-ps3, Nme2, Rps6-ps4, Uba52, Gm12918, Gstp2, Gm14586, Rpl23a-ps3, Rps13-ps2 
- Negative:  Malat1, Aldoa, Meg3, Atp5o.1, D130009I18Rik, D130079A08Rik, AC160336.1, Atpaf2, Gm2694, Nol4l 
- 	   B230312C02Rik, Ctsl, Ndufb4, Prxl2c, Nip7, Gpx4, Grik1, Synpr, Sult5a1, Tmem245 
- 	   D930028M14Rik, Gfra2, Gm34455, Zfp202, Ubash3a, Ppp1r1a, Scg3, Mgst3, Gm567, Tubb4b 
+ Positive:  Gm28661, Gm10925, Rps7-ps3, Gm28437, Rpl10-ps3, Rpl9-ps6, Gm21981, Gm45234, Gm20390, Gm21988 
+ 	   Gm45713, Rps27rt, Gm10177, Gm10288, Gm10175, Uba52, Rnasek, Kxd1, Gm8430, Rpl10a-ps1 
+ 	   Nme2, Atp5o, Rpl17-ps3, Rps6-ps4, Gstp2, Gm12918, Gm29216, Rpl23a-ps3, Rpl27-ps3, Gm9843 
+ Negative:  Aldoa, Malat1, Atp5o.1, Meg3, Minos1, Usmg5, H2afz, 2010107E04Rik, Aes, Sept7 
+ 	   Atp5f1, Fam103a1, Tusc5, Fam96b, March2, 2410015M20Rik, Tmem55b, 1500011K16Rik, AC160336.1, Hist1h2bc 
+ 	   1110008F13Rik, H2afj, 3632451O06Rik, H2afy, Pqlc1, March6, Tmem55a, Sssca1, 1700020I14Rik, Fam19a4 
  PC_ 4 
- Positive:  Tspan8, Etv1, Jak1, Tmem233, Resp18, Adk, Nppb, Skp1a, Scg2, Sst 
- 	   Cystm1, Osmr, Gm525, Nts, Ift122, Nefh, Npy2r, Map7d2, Tesc, Prkca 
- 	   Nsg1, S100b, Cd82, Calm1, Blvrb, Thy1, Htr1f, Ddah1, Crip2, Carhsp1 
- Negative:  Gm7271, Tafa4, P2ry1, Rarres1, Th, Fxyd6, Wfdc2, Id4, Zfp521, Iqsec2 
- 	   Gfra2, Rgs5, Tox3, Cdkn1a, Kcnd3, Rgs10, Alcam, Rasgrp1, Rprm, Pou4f2 
- 	   C1ql4, Piezo2, D130079A08Rik, Synpr, Spink2, Ceacam10, Camk2n1, Bok, Ptpre, Cd81 
+ Positive:  Tspan8, Jak1, Etv1, Resp18, Tmem233, Nppb, Adk, Sst, Skp1a, Scg2 
+ 	   Gm525, Osmr, Nts, Cystm1, Tesc, Npy2r, Nefh, Nsg1, S100b, Ift122 
+ 	   Map7d2, Thy1, Blvrb, Htr1f, Cd82, Prkca, Calm1, Ddah1, Atp1b1, Cysltr2 
+ Negative:  Gm7271, P2ry1, Rarres1, Th, Fxyd6, Tafa4, Wfdc2, Id4, Gfra2, Zfp521 
+ 	   Iqsec2, Rgs5, Rgs10, Tox3, Kcnd3, Cdkn1a, Rasgrp1, Alcam, Pou4f2, C1ql4 
+ 	   Rprm, Synpr, D130079A08Rik, Piezo2, Spink2, Ceacam10, Camk2n1, Bok, Grik1, Ptpre 
  PC_ 5 
- Positive:  Basp1, Gm765, Cd44, Prkar2b, Calcb, Rab27b, Lpar3, Ctxn3, Calca, Ly86 
- 	   Mt3, Nefl, Aplp2, Rgs7, Mrgprd, Anks1b, Nrn1l, Nrn1, Gap43, Cd55 
- 	   Grik1, Tmem255a, Serping1, Rspo2, Klhl5, Nmb, S100a7l2, Synpr, Ptprt, Otoa 
- Negative:  Nppb, Sst, Gm525, Nts, Osmr, Jak1, Htr1f, Npy2r, Hpcal1, Cysltr2 
- 	   Ptprk, Tesc, Tspan8, Il31ra, Resp18, Blvrb, Etv1, Cmtm7, Cavin1, Ada 
- 	   Fam178b, Gstt2, Pde4c, Nbl1, Sntb1, Ddah1, Nsg1, Camk2n1, Ptafr, Lgals1
+ Positive:  Basp1, Gm765, Prkar2b, Cd44, Rab27b, Calcb, Ctxn3, Lpar3, Ly86, Calca 
+ 	   Nefl, Aplp2, Mt3, Rgs7, Anks1b, Mrgprd, Nrn1l, Cd55, Nrn1, Gap43 
+ 	   Grik1, Serping1, Nmb, Klhl5, Rspo2, Spock3, Otoa, Ptprt, Synpr, S100a7l2 
+ Negative:  Nppb, Sst, Gm525, Nts, Osmr, Hpcal1, Npy2r, Htr1f, Jak1, Cysltr2 
+ 	   Ptprk, Tesc, Il31ra, Resp18, Tspan8, Blvrb, Cmtm7, Ada, Etv1, Fam178b 
+ 	   Cavin1, Camk2n1, Gstt2, Nbl1, Pde4c, Sntb1, Rarres1, Lgals1, Ddah1, Gm7271
 </div>
 ```r
 use.pcs = 1:30
@@ -382,34 +382,34 @@ s_merged <- FindClusters(s_merged, resolution = c(0.5,0.75,1.0))
 
 <div class='r_output'> Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
  
- Number of nodes: 17889
- Number of edges: 786490
+ Number of nodes: 17842
+ Number of edges: 691328
  
  Running Louvain algorithm...
- Maximum modularity in 10 random starts: 0.9490
- Number of communities: 28
- Elapsed time: 2 seconds
+ Maximum modularity in 10 random starts: 0.9579
+ Number of communities: 31
+ Elapsed time: 1 seconds
  Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
  
- Number of nodes: 17889
- Number of edges: 786490
+ Number of nodes: 17842
+ Number of edges: 691328
  
  Running Louvain algorithm...
- Maximum modularity in 10 random starts: 0.9340
- Number of communities: 30
- Elapsed time: 2 seconds
+ Maximum modularity in 10 random starts: 0.9465
+ Number of communities: 33
+ Elapsed time: 1 seconds
  Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
  
- Number of nodes: 17889
- Number of edges: 786490
+ Number of nodes: 17842
+ Number of edges: 691328
  
  Running Louvain algorithm...
- Maximum modularity in 10 random starts: 0.9199
- Number of communities: 35
- Elapsed time: 2 seconds
+ Maximum modularity in 10 random starts: 0.9364
+ Number of communities: 37
+ Elapsed time: 1 seconds
 </div>
 ```r
-s_merged <- RunTSNE(s_merged, dims = use.pcs, check_duplicates = FALSE)
+s_merged <- RunTSNE(s_merged, dims = use.pcs)
 s_merged <- RunUMAP(s_merged, dims = use.pcs)
 ```
 
@@ -417,26 +417,26 @@ s_merged <- RunUMAP(s_merged, dims = use.pcs)
  To use Python UMAP via reticulate, set umap.method to 'umap-learn' and metric to 'correlation'
  This message will be shown once per session
 </div>
-<div class='r_output'> 07:48:15 UMAP embedding parameters a = 0.9922 b = 1.112
+<div class='r_output'> 19:04:18 UMAP embedding parameters a = 0.9922 b = 1.112
 </div>
-<div class='r_output'> 07:48:15 Read 17889 rows and found 30 numeric columns
+<div class='r_output'> 19:04:18 Read 17842 rows and found 30 numeric columns
 </div>
-<div class='r_output'> 07:48:15 Using Annoy for neighbor search, n_neighbors = 30
+<div class='r_output'> 19:04:18 Using Annoy for neighbor search, n_neighbors = 30
 </div>
-<div class='r_output'> 07:48:15 Building Annoy index with metric = cosine, n_trees = 50
+<div class='r_output'> 19:04:18 Building Annoy index with metric = cosine, n_trees = 50
 </div>
 <div class='r_output'> 0%   10   20   30   40   50   60   70   80   90   100%
 </div>
 <div class='r_output'> [----|----|----|----|----|----|----|----|----|----|
 </div>
 <div class='r_output'> **************************************************|
- 07:48:17 Writing NN index file to temp file /var/folders/74/h45z17f14l9g34tmffgq9nkw0000gn/T//RtmpYUy6Kh/file25b213101b51
- 07:48:17 Searching Annoy index using 1 thread, search_k = 3000
- 07:48:22 Annoy recall = 100%
- 07:48:22 Commencing smooth kNN distance calibration using 1 thread
- 07:48:23 Initializing from normalized Laplacian + noise
- 07:48:24 Commencing optimization for 200 epochs, with 777262 positive edges
- 07:48:32 Optimization finished
+ 19:04:21 Writing NN index file to temp file /var/folders/74/h45z17f14l9g34tmffgq9nkw0000gn/T//RtmpI9wDI8/file1555f1d37fc
+ 19:04:21 Searching Annoy index using 1 thread, search_k = 3000
+ 19:04:25 Annoy recall = 100%
+ 19:04:25 Commencing smooth kNN distance calibration using 1 thread
+ 19:04:26 Initializing from normalized Laplacian + noise
+ 19:04:27 Commencing optimization for 200 epochs, with 765114 positive edges
+ 19:04:35 Optimization finished
 </div>
 ```r
 DimPlot(s_merged, reduction = "tsne")
@@ -469,9 +469,9 @@ save(s_merged,file="mapping_comparison_object.RData")
 sessionInfo()
 ```
 
-<div class='r_output'> R version 4.0.2 (2020-06-22)
+<div class='r_output'> R version 4.0.0 (2020-04-24)
  Platform: x86_64-apple-darwin17.0 (64-bit)
- Running under: macOS Catalina 10.15.5
+ Running under: macOS Catalina 10.15.4
  
  Matrix products: default
  BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
@@ -484,47 +484,41 @@ sessionInfo()
  [1] stats     graphics  grDevices datasets  utils     methods   base     
  
  other attached packages:
- [1] ggVennDiagram_0.3 tximport_1.16.1   Seurat_3.2.0     
+ [1] ggVennDiagram_0.3 tximport_1.16.0   Seurat_3.1.5     
  
  loaded via a namespace (and not attached):
-   [1] Rtsne_0.15            colorspace_1.4-1      deldir_0.1-28        
-   [4] ellipsis_0.3.1        class_7.3-17          ggridges_0.5.2       
-   [7] futile.logger_1.4.3   spatstat.data_1.4-3   farver_2.0.3         
-  [10] leiden_0.3.3          listenv_0.8.0         ggrepel_0.8.2        
-  [13] bit64_4.0.2           RSpectra_0.16-0       codetools_0.2-16     
-  [16] splines_4.0.2         knitr_1.29            polyclip_1.10-0      
-  [19] jsonlite_1.7.0        ica_1.0-2             cluster_2.1.0        
-  [22] png_0.1-7             uwot_0.1.8            shiny_1.5.0          
-  [25] sctransform_0.2.1     compiler_4.0.2        httr_1.4.2           
-  [28] Matrix_1.2-18         fastmap_1.0.1         lazyeval_0.2.2       
-  [31] later_1.1.0.1         formatR_1.7           htmltools_0.5.0      
-  [34] tools_4.0.2           rsvd_1.0.3            igraph_1.2.5         
-  [37] gtable_0.3.0          glue_1.4.1            RANN_2.6.1           
-  [40] reshape2_1.4.4        dplyr_1.0.1           Rcpp_1.0.5           
-  [43] spatstat_1.64-1       vctrs_0.3.2           ape_5.4-1            
-  [46] nlme_3.1-148          lmtest_0.9-37         xfun_0.16            
-  [49] stringr_1.4.0         globals_0.12.5        mime_0.9             
-  [52] miniUI_0.1.1.1        lifecycle_0.2.0       irlba_2.3.3          
-  [55] renv_0.11.0           goftest_1.2-2         future_1.18.0        
-  [58] MASS_7.3-51.6         zoo_1.8-8             scales_1.1.1         
-  [61] promises_1.1.1        spatstat.utils_1.17-0 parallel_4.0.2       
-  [64] lambda.r_1.2.4        RColorBrewer_1.1-2    yaml_2.2.1           
-  [67] reticulate_1.16       pbapply_1.4-3         gridExtra_2.3        
-  [70] ggplot2_3.3.2         rpart_4.1-15          stringi_1.4.6        
-  [73] e1071_1.7-3           rlang_0.4.7           pkgconfig_2.0.3      
-  [76] evaluate_0.14         lattice_0.20-41       ROCR_1.0-11          
-  [79] purrr_0.3.4           tensor_1.5            sf_0.9-5             
-  [82] labeling_0.3          patchwork_1.0.1       htmlwidgets_1.5.1    
-  [85] bit_4.0.4             cowplot_1.0.0         tidyselect_1.1.0     
-  [88] RcppAnnoy_0.0.16      plyr_1.8.6            magrittr_1.5         
-  [91] R6_2.4.1              generics_0.0.2        DBI_1.1.0            
-  [94] withr_2.2.0           pillar_1.4.6          mgcv_1.8-31          
-  [97] fitdistrplus_1.1-1    units_0.6-7           survival_3.2-3       
- [100] abind_1.4-5           tibble_3.0.3          future.apply_1.6.0   
- [103] crayon_1.3.4          hdf5r_1.3.3           futile.options_1.0.1 
- [106] KernSmooth_2.23-17    plotly_4.9.2.1        rmarkdown_2.3        
- [109] grid_4.0.2            data.table_1.13.0     digest_0.6.25        
- [112] classInt_0.4-3        xtable_1.8-4          VennDiagram_1.6.20   
- [115] tidyr_1.1.1           httpuv_1.5.4          munsell_0.5.0        
- [118] viridisLite_0.3.0
+   [1] nlme_3.1-148         tsne_0.1-3           sf_0.9-3            
+   [4] bit64_0.9-7          RcppAnnoy_0.0.16     RColorBrewer_1.1-2  
+   [7] httr_1.4.1           sctransform_0.2.1    tools_4.0.0         
+  [10] R6_2.4.1             irlba_2.3.3          KernSmooth_2.23-17  
+  [13] DBI_1.1.0            uwot_0.1.8           lazyeval_0.2.2      
+  [16] colorspace_1.4-1     withr_2.2.0          tidyselect_1.1.0    
+  [19] gridExtra_2.3        bit_1.1-15.2         compiler_4.0.0      
+  [22] VennDiagram_1.6.20   formatR_1.7          hdf5r_1.3.2         
+  [25] plotly_4.9.2.1       labeling_0.3         scales_1.1.1        
+  [28] classInt_0.4-3       lmtest_0.9-37        ggridges_0.5.2      
+  [31] pbapply_1.4-2        stringr_1.4.0        digest_0.6.25       
+  [34] rmarkdown_2.1        pkgconfig_2.0.3      htmltools_0.4.0     
+  [37] htmlwidgets_1.5.1    rlang_0.4.6          farver_2.0.3        
+  [40] zoo_1.8-8            jsonlite_1.6.1       ica_1.0-2           
+  [43] dplyr_0.8.5          magrittr_1.5         futile.logger_1.4.3 
+  [46] patchwork_1.0.0      Matrix_1.2-18        Rcpp_1.0.4.6        
+  [49] munsell_0.5.0        ape_5.3              reticulate_1.15     
+  [52] lifecycle_0.2.0      stringi_1.4.6        yaml_2.2.1          
+  [55] MASS_7.3-51.6        Rtsne_0.15           plyr_1.8.6          
+  [58] grid_4.0.0           parallel_4.0.0       listenv_0.8.0       
+  [61] ggrepel_0.8.2        crayon_1.3.4         lattice_0.20-41     
+  [64] cowplot_1.0.0        splines_4.0.0        knitr_1.28          
+  [67] pillar_1.4.4         igraph_1.2.5         future.apply_1.5.0  
+  [70] reshape2_1.4.4       codetools_0.2-16     futile.options_1.0.1
+  [73] leiden_0.3.3         glue_1.4.1           evaluate_0.14       
+  [76] lambda.r_1.2.4       data.table_1.12.8    renv_0.10.0         
+  [79] BiocManager_1.30.10  png_0.1-7            vctrs_0.3.0         
+  [82] gtable_0.3.0         RANN_2.6.1           purrr_0.3.4         
+  [85] tidyr_1.1.0          future_1.17.0        assertthat_0.2.1    
+  [88] ggplot2_3.3.0        xfun_0.14            rsvd_1.0.3          
+  [91] RSpectra_0.16-0      e1071_1.7-3          class_7.3-17        
+  [94] survival_3.1-12      viridisLite_0.3.0    tibble_3.0.1        
+  [97] units_0.6-6          cluster_2.1.0        globals_0.12.5      
+ [100] fitdistrplus_1.1-1   ellipsis_0.3.1       ROCR_1.0-11
 </div>

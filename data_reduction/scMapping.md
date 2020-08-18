@@ -15,8 +15,8 @@ This assumes you've first complete this [page](scrna_htstream.md)
 Unfortunately, Cellranger expects a very specific filename format, the bcl2fasq output, so we need to rename the htstream output files.
 
 ```bash
-mv /share/workshop/adv_scrnaseq/msettles/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_R1.fastq.gz  /share/workshop/adv_scrnaseq/msettles/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_S1_L001_R1_001.fastq.gz
-mv /share/workshop/adv_scrnaseq/msettles/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_R2.fastq.gz  /share/workshop/adv_scrnaseq/msettles/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_S1_L001_R2_001.fastq.gz
+mv /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_R1.fastq.gz  /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_S1_L001_R1_001.fastq.gz
+mv /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_R2.fastq.gz  /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_S1_L001_R2_001.fastq.gz
 ```
 
 ### For the sake of time (building references can take hours) we are going to link a finished references, but when time allows
@@ -38,7 +38,7 @@ We'll need to download and extract a number of reference files.
 ```bash
 wget ftp://ftp.ensembl.org/pub/release-100/fasta/mus_musculus/dna/Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
 wget ftp://ftp.ensembl.org/pub/release-100/gtf/mus_musculus/Mus_musculus.GRCm38.100.gtf.gz
-ftp://ftp.ensembl.org/pub/release-100/fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz
+wget ftp://ftp.ensembl.org/pub/release-100/fasta/mus_musculus/cdna/Mus_musculus.GRCm38.cdna.all.fa.gz
 gunzip Mus_musculus.GRCm38.100.gtf.gz
 gunzip Mus_musculus.GRCm38.dna.primary_assembly.fa.gz
 gunzip Mus_musculus.GRCm38.cdna.all.fa.gz
@@ -52,23 +52,25 @@ Description of cellranger can be found [here](https://support.10xgenomics.com/si
 
 cellranger version 3 has many sub-applications
 
-1. cellranger mkfastq
+SUBCOMMANDS:
 
-2. cellranger count
-3. cellranger aggr
-4. cellranger reanalyze
-5. cellranger mat2csv
+|:--|:--|
+|    count    |            Count gene expression and feature barcoding reads from a single sample and GEM well |
+|    vdj       |          Assembles single-cell VDJ receptor sequences from 10x Immune Profiling libraries |
+|    aggr       |         Aggregate data from multiple Cell Ranger runs |
+|    reanalyze   |        Re-run secondary analysis (dimensionality reduction, clustering, etc) |
+|    targeted-compare |   Analyze targeted enrichment performance by comparing a targeted sample to its cognate parent WTA sample (used as input for targeted gene expression) |
+|    targeted-depth    |  Estimate targeted read depth values (mean reads per cell) for a specified input parent WTA sample and a target panel CSV file |
+|    mkvdjref |           Prepare a reference for use with CellRanger VDJ |
+|    mkfastq   |          Run Illumina demultiplexer on sample sheets that contain 10x-specific sample index sets |
+|    testrun    |         Execute the 'count' pipeline on a small test dataset |
+|    mat2csv     |        Convert a gene count matrix to CSV format |
+|    mkgtf        |       Prepare a GTF file for use as a 10x transcriptome reference |
+|    mkref         |      Prepare a reference for use with 10x analysis software. Requires a GTF and FASTA |
+|    upload         |     Upload a summary of an analysis pipeline job to 10x Genomics support |
+|    sitecheck       |    Collect Linux system configuration information |
+|    help             |   Prints this message or the help of the given subcommand(s) |
 
-6. cellranger mkgtf
-7. cellranger mkref
-
-8. cellranger vdj
-
-9. cellranger mkvdjref
-
-10. cellranger testrun
-11. cellranger upload
-12. cellranger sitecheck
 
 ### Building indexes for cellranger (takes a long time)
 10X Genomics provides pre-built references for human and mouse genomes to use with Cell Ranger. Researchers can make custom reference genomes for additional species or add custom marker genes of interest to the reference, e.g. GFP. The following tutorial outlines the steps to build a custom reference using the cellranger mkref pipeline.
@@ -76,7 +78,7 @@ cellranger version 3 has many sub-applications
 ```bash
 cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/reference
 
-module load cellranger/3.1.0
+module load cellranger/4.0.0
 
 cellranger mkgtf Mus_musculus.GRCm38.100.gtf Mus_musculus.GRCm38.100.filtered.gtf \
    --attribute=gene_biotype:protein_coding \
@@ -101,7 +103,7 @@ cellranger mkref \
    --genome=GRCm38.cellranger \
    --fasta=Mus_musculus.GRCm38.dna.primary_assembly.fa \
    --genes=Mus_musculus.GRCm38.100.filtered.gtf \
-   --ref-version=3.1.0
+   --ref-version=4.0.0
 ```
 
 ### Counting (expression matrix) with cellranger
@@ -173,7 +175,7 @@ With 3 files needed to completely describe each gene x cell matrix
 
 #### Bam output
 
-10x Chromium cellular and molecular barcode information for each read is stored as TAG fields:
+10x Chromium cellular and molecular barcode information for each read is stored as TAG fields (Version 4.0):
 
 | Tag	| Type	| Description
 |:----- |:------ |:----- |
@@ -183,10 +185,6 @@ With 3 files needed to completely describe each gene x cell matrix
 | UB	| Z		| Chromium molecular barcode sequence that is error-corrected among other molecular barcodes with the same cellular barcode and gene alignment. |
 | UR	| Z		| Chromium molecular barcode sequence as reported by the sequencer. |
 | UY	| Z		| Chromium molecular barcode read quality. Phred scores as reported by sequencer. |
-| BC	| Z		| Sample index read. |
-| QT	| Z		| Sample index read quality. Phred scores as reported by sequencer. |
-| TR	| Z		| Trimmed sequence. For the Single Cell 3' v1 chemistry, this is trailing sequence following the UMI on Read 2. For the Single Cell 3' v2 chemistry, this is trailing sequence following the cell and molecular barcodes on Read 1. |
-| TQ	| Z		| Trimmed sequence quality. Phred scores as reported by the sequencer. No longer present in V3 |
 
 The following TAG fields are present if a read maps to the genome __and__ overlaps an exon by at least one base pair. A read may align to multiple transcripts and genes, but it is only considered confidently mapped to the transcriptome it if mapped to a single gene.
 
@@ -210,8 +208,9 @@ The following are feature barcoding TAG fields which are not aligned to the geno
 
 #### An example read
 
-Cell Ranger Version 3
-		J00113:284:HG27NBBXX:8:2202:16741:8594	1040	1	4491502	255	101M	*	0	0	ACTGGACAGTGATTGTGGGGAGCAAGTCCCTCAAGGCATTTAAAACAAAAATCTCGTGTAGCCCCTCAACTGTTCAAGTGGCAGACAAAATAAATTACCAT	-A-AAJJJFAFA-F<<<JFFJFA-AF)JFFAJJFJAFFA7<JFFJA<JJFA<F<JFJJFAJAJFJFFJFJJJJJJJFJJJJJJFJFJFAFJFJJJJF<<<A	NH:i:1	HI:i:1	AS:i:99	nM:i:0	TX:Z:ENSMUST00000027035,+2455,101M;ENSMUST00000192650,+3029,101M;ENSMUST00000195555,+1624,101M	GX:Z:ENSMUSG00000025902	GN:Z:Sox17	fx:Z:ENSMUSG00000025902	RE:A:E	li:i:0	BC:Z:CAGCATCA	QT:Z:AAFFFFJJ	CR:Z:CAAGATCTCGCAAACT	CY:Z:AAFFFJJJJJJJJJJJ	CB:Z:CAAGATCTCGCAAACT-1	UR:Z:GCCGAGACCT	UY:Z:JJJJJJJJJJ	UB:Z:GCCGAGACCT	xf:i:17RG:Z:654:0:1:HG27NBBXX:8
+Cell Ranger Version 4
+
+    J00113:284:HG27NBBXX:8:1101:29274:13851 16      1       16645735        255     95M2125N6M      *       0       0       TCTTTTTACAATAAATTCATGGCCATCAGAAGATATTAATTTCACATACATAGCATCAGGGCCTTCACAGCCACCATAGGTCTTCTCCTCTCCATCCATTA   -J<A7AFJFAA----7-A<A7FAA7AAA<<F77-FA-J<A7-JJJFFAJA-JFFFAF7A77J<7JJAJFJJJJJJJJJJJFFJFAJJ<FJFJJJJJAFF<-   NH:i:1  HI:i:1  AS:i:100        nM:i:0  RG:Z:654_small:0:1:HG27NBBXX:8  TX:Z:ENSMUST00000115352,+98,101M;ENSMUST00000185393,+79,101M;ENSMUST00000185771,+304,101M;ENSMUST00000186701,+377,101M;ENSMUST00000186948,+154,101M;ENSMUST00000188641,+110,101M        GX:Z:ENSMUSG00000079658 GN:Z:Eloc       fx:Z:ENSMUSG00000079658 RE:A:E  xf:i:25 CR:Z:CCACTACTCCTCAACC   CY:Z:AAFFFJJJJJJJJJJJ   CB:Z:CCACTACTCCTCAACC-1 UR:Z:AACGTCAAAA UY:Z:JJJJJJJJJJ UB:Z:AACGTCAAAA
 
 #### 10X genomics sample report
 
@@ -224,18 +223,18 @@ Summary of the alignment and assignment of reads to cells and genes are present 
 | Median Genes per Cell	| The median number of genes detected (with nonzero UMI counts) across all cell-associated barcodes. |
 | Number of Reads	| Total number of sequenced reads. |
 | Valid Barcodes	| Fraction of reads with cell-barcodes that match the whitelist. |
-| Reads Mapped to Genome | Fraction of reads that mapped to the genome.|
-| Reads Mapped Confidently to Genome | Reads Mapped Confidently to Genome. |
-| Reads Mapped Confidently to Transcriptome	| Fraction of reads that mapped to a unique gene in the transcriptome with a high mapping quality score as reported by the aligner. |
-| Reads Mapped Confidently to Exonic Regions	| Fraction of reads that mapped to the exonic regions of the genome with a high mapping quality score as reported by the aligner. |
-| Reads Mapped Confidently to Intronic Regions	| Fraction of reads that mapped to the intronic regions of the genome with a high mapping quality score as reported by the aligner. |
-| Reads Mapped Confidently to Intergenic Regions	| Fraction of reads that mapped to the intergenic regions of the genome with a high mapping quality score as reported by the aligner. |
-| Reads Mapped Antisense to Gene | Fraction of reads confidently mapped to the transcriptome, but on the opposite strand of their annotated gene. A read is counted as antisense if it has any alignments that are consistent with an exon of a transcript but antisense to it, and has no sense alignments. |
 | Sequencing Saturation	| The fraction of reads originating from an already-observed UMI. This is a function of library complexity and sequencing depth. More specifically, this is the fraction of confidently mapped, valid cell-barcode, valid UMI reads that had a non-unique (cell-barcode, UMI, gene). This metric was called "cDNA PCR Duplication" in versions of cellranger prior to 1.2. |
 | Q30 Bases in Barcode	| Fraction of bases with Q-score at least 30 in the cell barcode sequences. This is the i7 index (I1) read for the Single Cell 3' v1 chemistry and the R1 read for the Single Cell 3' v2 chemistry. |
 | Q30 Bases in RNA Read	| Fraction of bases with Q-score at least 30 in the RNA read sequences. This is Illumina R1 for the Single Cell 3' v1 chemistry and Illumina R2 for the Single Cell 3' v2 chemistry. |
 | Q30 Bases in Sample Index	| Fraction of bases with Q-score at least 30 in the sample index sequences. This is the i5 index (I2) read for the Single Cell 3' v1 chemistry and the i7 index (I1) read for the Single Cell 3' v2 chemistry. |
 | Q30 Bases in UMI	| Fraction of bases with Q-score at least 30 in the UMI sequences. This is the R2 read for the Single Cell 3' v1 chemistry and the R1 read for the Single Cell 3' v2 chemistry. |
+| Reads Mapped to Genome | Fraction of reads that mapped to the genome.|
+| Reads Mapped Confidently to Genome | Reads Mapped Confidently to Genome. |
+| Reads Mapped Confidently to Intergenic Regions	| Fraction of reads that mapped to the intergenic regions of the genome with a high mapping quality score as reported by the aligner. |
+| Reads Mapped Confidently to Intronic Regions	| Fraction of reads that mapped to the intronic regions of the genome with a high mapping quality score as reported by the aligner. |
+| Reads Mapped Confidently to Exonic Regions	| Fraction of reads that mapped to the exonic regions of the genome with a high mapping quality score as reported by the aligner. |
+| Reads Mapped Confidently to Transcriptome	| Fraction of reads that mapped to a unique gene in the transcriptome with a high mapping quality score as reported by the aligner. |
+| Reads Mapped Antisense to Gene | Fraction of reads confidently mapped to the transcriptome, but on the opposite strand of their annotated gene. A read is counted as antisense if it has any alignments that are consistent with an exon of a transcript but antisense to it, and has no sense alignments. |
 | Fraction Reads in Cells	| The fraction of cell-barcoded, confidently mapped reads with cell-associated barcodes. |
 | Total Genes Detected	| The number of genes with at least one UMI count in any cell. |
 | Median UMI Counts per Cell	| The median number of total UMI counts across all cell-associated barcodes. |
@@ -243,6 +242,9 @@ Summary of the alignment and assignment of reads to cells and genes are present 
 ### 10X genomics html reports
 
 Cell ranger does produce a pretty html report with the same statistics and some "analysis".
+
+*   [RawData Report](../datasets/654_small_web_summary.html)
+*   [HTStream Report](../datasets/654_small_htstream_web_summary.html)
 
 ### Exercises
 
@@ -316,30 +318,30 @@ Alevin works under the same indexing scheme (as salmon) for the reference, and c
 
 Alevin works in two phases. In the first phase it quickly parses the read file containing the CB and UMI information to generate the frequency distribution of all the observed CBs, and creates a lightweight data-structure for fast-look up and correction of the CB. In the second round, alevin utilizes the read-sequences contained in the files to map the reads to the transcriptome, identify potential PCR/sequencing errors in the UMIs, and performs hybrid de-duplication while accounting for UMI collisions. Finally, a post-abundance estimation CB whitelisting procedure is done and a cell-by-gene count matrix is generated.
 
-### First lets install and build the newest version of salmon (takes a while)
+### First lets install and build the newest version of salmon (takes a little while)
 
 ```bash
 cd /share/workshop/adv_scrnaseq/$USER
 module load cmake
 
-wget https://github.com/COMBINE-lab/salmon/archive/v1.2.1.tar.gz
-tar xzvf v1.2.1.tar.gz
-cd salmon-1.2.1/
+wget https://github.com/COMBINE-lab/salmon/archive/v1.3.0.tar.gz
+tar xzvf v1.3.0.tar.gz
+cd salmon-1.3.0/
 
 mkdir build
 cd  build/
 
-cmake -DFETCH_BOOST=TRUE -DCMAKE_INSTALL_PREFIX=/share/workshop/adv_scrnaseq/$USER/salmon-1.2.1 ..
+cmake -DFETCH_BOOST=TRUE -DCMAKE_INSTALL_PREFIX=/share/workshop/adv_scrnaseq/$USER/salmon-1.3.0 ..
+
 make
 make test
 make install
-export PATH=/share/workshop/adv_scrnaseq/$USER/salmon-1.2.1/build/src/:$PATH
+export PATH=/share/workshop/adv_scrnaseq/$USER/salmon-1.3.0/build/src/:$PATH
 ```
 **OR**
 
 link against my Copy
 ```bash
-ln -s /share/biocore/workshops/2020_scRNAseq/salmon /share/workshop/adv_scrnaseq/$USER/.
 export PATH=/share/biocore/workshops/2020_scRNAseq/salmon/build/src/:$PATH
 ```
 
@@ -354,13 +356,13 @@ sed -i.bak -e 's/>//g' decoys.txt
 
 cat Mus_musculus.GRCm38.cdna.all.fa Mus_musculus.GRCm38.dna.primary_assembly.fa > gentrome.fa
 
-salmon index -p 4 -t gentrome.fa.gz -d decoys.txt -i GRCm38.salmon_decoys
+salmon index -p 4 -t gentrome.fa -d decoys.txt -i GRCm38.salmon_decoys
 ```
 
 ### Mapping with Salmon
 
 Fist Salmon needs a transcript to gene mapping database, we can get this from Biomart.
-*1.) First, go to Biomart
+*1.) First, go to [Biomart](http://uswest.ensembl.org/biomart/martview/3984ae27542e76f298af77500c750f45)
 
 <img class="doc_images" class="doc_images" src="biomart_figures/biomart1.png" alt="biomart1"/>
 

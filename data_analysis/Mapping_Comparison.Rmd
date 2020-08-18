@@ -56,7 +56,7 @@ s_cellranger_hts <- CreateSeuratObject(counts = cellranger_htstream, min.cells =
 s_cellranger_hts
 
 ## STAR
-star <- Read10X("Adv_comparison_outputs/654_htstream_star/outs/filtered_feature_bc_matrix")
+star <- Read10X("Adv_comparison_outputs/654_htstream_star/outs/filtered_feature_bc_matrix" )
 s_star_hts <- CreateSeuratObject(counts = star, min.cells = 3, min.features = 200, project = "star")
 s_star_hts
 
@@ -178,7 +178,7 @@ s_merged <- RunPCA(s_merged, features = VariableFeatures(object = s_merged))
 use.pcs = 1:30
 s_merged <- FindNeighbors(s_merged, dims = use.pcs)
 s_merged <- FindClusters(s_merged, resolution = c(0.5,0.75,1.0))
-s_merged <- RunTSNE(s_merged, dims = use.pcs)
+s_merged <- RunTSNE(s_merged, dims = use.pcs, check_duplicates = FALSE)
 s_merged <- RunUMAP(s_merged, dims = use.pcs)
 DimPlot(s_merged, reduction = "tsne")
 DimPlot(s_merged, reduction = "umap")

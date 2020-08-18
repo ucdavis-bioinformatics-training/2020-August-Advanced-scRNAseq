@@ -334,13 +334,12 @@ cmake -DFETCH_BOOST=TRUE -DCMAKE_INSTALL_PREFIX=/share/workshop/adv_scrnaseq/$US
 make
 make test
 make install
-export PATH=/share/workshop/adv_scrnaseq/$USER/salmon-1.2.1/build/src/:$PATH
+export PATH=/share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/salmon-1.3.0/build/src:$PATH
 ```
 **OR**
 
 link against my Copy
 ```bash
-ln -s /share/biocore/workshops/2020_scRNAseq/salmon /share/workshop/adv_scrnaseq/$USER/.
 export PATH=/share/biocore/workshops/2020_scRNAseq/salmon/build/src/:$PATH
 ```
 

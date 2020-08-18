@@ -46,6 +46,15 @@ if (!any(rownames(installed.packages()) == "ggVennDiagram")){
 }
 library(ggVennDiagram)
 
+## used in Seurat findMarkers
+if (!any(rownames(installed.packages()) == "limma")){
+  if (!requireNamespace("BiocManager", quietly = TRUE))
+      install.packages("BiocManager")
+  BiocManager::install('limma')
+
+}
+library(limma)
+
 sessionInfo()
 ```
 

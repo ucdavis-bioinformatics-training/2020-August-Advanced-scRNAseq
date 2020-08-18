@@ -360,7 +360,7 @@ salmon index -p 4 -t gentrome.fa -d decoys.txt -i GRCm38.salmon_decoys
 ### Mapping with Salmon
 
 Fist Salmon needs a transcript to gene mapping database, we can get this from Biomart.
-*1.) First, go to Biomart
+*1.) First, go to [Biomart](http://uswest.ensembl.org/biomart/martview/3984ae27542e76f298af77500c750f45)
 
 <img class="doc_images" class="doc_images" src="biomart_figures/biomart1.png" alt="biomart1"/>
 

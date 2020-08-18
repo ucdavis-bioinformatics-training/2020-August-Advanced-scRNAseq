@@ -32,6 +32,21 @@ library(velocyto.R)
 sessionInfo()
 ```
 
+### Download the template Markdown workshop document for Monocle and open it.
+
+In the R console run the following commands
+```r
+download.file("https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/data_analysis/adv_scrnaseq_monocle.Rmd", "monocle.Rmd")
+```
+
+Additionally, download the following data files for monocle analysis.
+
+```r
+download.file("https://github.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/raw/master/datasets/monocle3_expression_matrix.rds", "monocle3_expression_matrix.rds")
+download.file("https://github.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/raw/master/datasets/monocle3_cell_metadata.rds", "monocle3_cell_metadata.rds")
+download.file("https://github.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/blob/master/datasets/monocle3_gene_metadata.rds?raw=true", "monocle3_gene_metadata.rds")
+```
+
 ### Download the template Markdown workshop document for VDJ and open it.
 
 In the R console run the following command

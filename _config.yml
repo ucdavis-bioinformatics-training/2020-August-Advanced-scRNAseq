@@ -22,7 +22,7 @@ navigation:
   - title: Using Slack in this workshop
     url: base/slack
   - title: Using Zoom in this workshop
-    url: base/zoom  
+    url: base/zoom
   - title: Cheat Sheets
     url: base/cheatSheetIndex
   - title: Software and Links
@@ -73,7 +73,7 @@ navigation:
     url: data_analysis/anchoring_fixed
   - title: Shiny App Install/Overview
     url: data_analysis/shiny_app_install
-  - title: App Practical Usage
+  - title: Shiny App Practical Usage
     url: data_analysis/shiny_practical
   - title: AWS Hosted App (Optional)
     url: data_analysis/shiny_on_aws

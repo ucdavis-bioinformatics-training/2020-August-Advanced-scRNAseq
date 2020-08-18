@@ -76,7 +76,7 @@ cellranger version 3 has many sub-applications
 ```bash
 cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/reference
 
-module load cellranger/3.1.0
+module load cellranger/4.0.0
 
 cellranger mkgtf Mus_musculus.GRCm38.100.gtf Mus_musculus.GRCm38.100.filtered.gtf \
    --attribute=gene_biotype:protein_coding \

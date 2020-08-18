@@ -61,13 +61,13 @@ Running cellranger mkvdjref
 ```bash
 cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/reference
 
-module load cellranger/3.1.0
+module load cellranger/4.0.0
 
 cellranger mkvdjref \
    --genome=GRCm38.cellranger_vdj \
    --fasta=Mus_musculus.GRCm38.dna.primary_assembly.fa \
    --genes=Mus_musculus.GRCm38.100.filtered.gtf \
-   --ref-version=3.1.0
+   --ref-version=4.0.0
 ```
 
 This assumes that the following biotypes are present in the gtf files

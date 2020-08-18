@@ -22,7 +22,7 @@ navigation:
   - title: Using Slack in this workshop
     url: base/slack
   - title: Using Zoom in this workshop
-    url: base/zoom  
+    url: base/zoom
   - title: Cheat Sheets
     url: base/cheatSheetIndex
   - title: Software and Links
@@ -65,18 +65,20 @@ navigation:
     url:   data_reduction/Velocyto
 
   - heading: Data analysis
-  - title: scRNA analysis prepare
-    url: data_analysis/scrna_analysis_prepare
+  - title: scRNA analysis prepare, part 1
+    url: data_analysis/scrna_analysis_prepare_fixed
   - title: Mapping Comparison
     url: data_analysis/Mapping_Comparison_fixed
   - title: Anchoring (Comparison dataset)
     url: data_analysis/anchoring_fixed
   - title: Shiny App Install/Overview
     url: data_analysis/shiny_app_install
-  - title: App Practical Usage
+  - title: Shiny App Practical Usage
     url: data_analysis/shiny_practical
   - title: AWS Hosted App (Optional)
     url: data_analysis/shiny_on_aws
+  - title: scRNA analysis prepare, part 2
+    url: data_analysis/scrna_analysis_prepare2_fixed
   - title: Monocle
     url: data_analysis/adv_scrnaseq_monocle_fixed
   - title: VDJ T cell and B cell analysis

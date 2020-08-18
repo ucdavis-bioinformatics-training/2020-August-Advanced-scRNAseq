@@ -1,4 +1,4 @@
-### Create a new RStudio project
+### Create a new RStudio project, PART 1
 
 Open RStudio and create a new project, for more info see [Using-Projects](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
 
@@ -6,7 +6,7 @@ Open RStudio and create a new project, for more info see [Using-Projects](https:
 
 Learn more about [renv](https://rstudio.github.io/renv/articles/renv.html)
 
-Set some options and make sure the packages Seurat, sva, ggplot2, dplyr, limma, topGO, WGCNA are installed (if not install it), and then load them and verify they all loaded correctly.
+Set some options and make sure the packages are installed (if not install it), and then load them and verify they all loaded correctly.
 
 In the R console run the following commands
 ```r
@@ -46,51 +46,12 @@ if (!any(rownames(installed.packages()) == "ggVennDiagram")){
 }
 library(ggVennDiagram)
 
-if (!any(rownames(installed.packages()) == "devtools")){
-  if (!requireNamespace("BiocManager", quietly = TRUE))
-      install.packages("BiocManager")
-  BiocManager::install("devtools")
-}
-library(devtools)
-
-BiocManager::install(c("Biobase", "SingleCellExperiment", "batchelor", "BiocGenerics", "DelayedArray", "DelayedMatrixStats", "limma", "S4Vectors", "SummarizedExperiment", "pcaMethods"))
-
-## Possible you may have to install Rtools if the below fails
-## http://jtleek.com/modules/01_DataScientistToolbox/02_10_rtools/#1
-## Mac users may also experience installation problems due to Xcode or gfortran.
-## Instructions: https://cole-trapnell-lab.github.io/monocle3/docs/installation/
-devtools::install_github('cole-trapnell-lab/leidenbase')
-devtools::install_github('cole-trapnell-lab/monocle3')
-library(monocle3)
-
-devtools::install_github("velocyto-team/velocyto.R")
-library(velocyto.R)
-
-if (!any(rownames(installed.packages()) == "biomaRt")){
-  if (!requireNamespace("BiocManager", quietly = TRUE))
-      install.packages("BiocManager")
-  BiocManager::install("biomaRt")
-}
-library(biomaRt)
-
-if (!any(rownames(installed.packages()) == "sva")){
-  if (!requireNamespace("BiocManager", quietly = TRUE))
-      install.packages("BiocManager")
-  BiocManager::install("sva")
-}
-library(sva)
-
-if (!any(rownames(installed.packages()) == "scran")){
-  if (!requireNamespace("BiocManager", quietly = TRUE))
-      install.packages("BiocManager")
-  BiocManager::install("scran")
-}
-library(scran)
-
+## used in Seurat findMarkers
 if (!any(rownames(installed.packages()) == "limma")){
   if (!requireNamespace("BiocManager", quietly = TRUE))
       install.packages("BiocManager")
-  BiocManager::install("limma")
+  BiocManager::install('limma')
+
 }
 library(limma)
 
@@ -104,7 +65,7 @@ Lets spend a minute looking at the reports and the data
 
 In the R console run the following command.
 ```r
-download.file("https://bioshare.bioinformatics.ucdavis.edu/bioshare/download/iimg5mz77whzzqc/Adv_comparison_outputs.zip", "Adv_comparison_outputs.zip")
+download.file("https://bioshare.bioinformatics.ucdavis.edu/bioshare/download/iimg5mz77whzzqc/Adv_comparison_outputs.zip", "Adv_comparison_outputs.zip", method = "wget")
 zipf <- "Adv_comparison_outputs.zip"
 outdir <- "."
 unzip(zipf, exdir=outdir)
@@ -128,20 +89,6 @@ download.file("https://raw.githubusercontent.com/ucdavis-bioinformatics-training
 In the R console run the following command
 ```r
 download.file("https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/data_analysis/anchoring.Rmd", "anchoring.Rmd")
-```
-
-### Download the template Markdown workshop document for VDJ and open it.
-
-In the R console run the following command
-```r
-download.file("https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/data_analysis/VDJ_Analysis.Rmd", "VDJ_Analysis.Rmd")
-```
-
-### Download the template Markdown workshop document for Velocity analysis and open it.
-
-In the R console run the following command
-```r
-download.file("https://raw.githubusercontent.com/ucdavis-bioinformatics-training/2020-August-Advanced-scRNAseq/master/data_analysis/Velocyto.Rmd", "Velocyto.Rmd")
 ```
 
 ### Edit the file YAML portion

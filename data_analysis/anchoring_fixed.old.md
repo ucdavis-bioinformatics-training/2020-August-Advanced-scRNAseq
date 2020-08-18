@@ -8,7 +8,7 @@ output:
 
 In this section, we will learn how to take two separate datasets and "integrate" them, so that cells of the same type (across datasets) roughly fall into the same region of the tsne or umap plot (instead of separating by dataset first).
 
-Integration is typically done in a few different scenarios, e.g.,
+Integration is typically done in a few different scenarios, e.g., 
 
 * if you collect data from across multiple conditions/days/batches/experiments/etc. and you want to remove these technical confounders.
 * if you are doing a case/control study and you want to identify which cells match across condition.
@@ -38,8 +38,8 @@ s_cellranger_orig
 ```
 
 <div class='r_output'> An object of class Seurat 
- 15256 features across 4939 samples within 1 assay 
- Active assay: RNA (15256 features, 0 variable features)
+ 15203 features across 4907 samples within 1 assay 
+ Active assay: RNA (15203 features, 0 variable features)
 </div>
 ```r
 cellranger_htstream <- Read10X_h5("Adv_comparison_outputs/654_htstream/outs/filtered_feature_bc_matrix.h5")
@@ -48,8 +48,8 @@ s_cellranger_hts
 ```
 
 <div class='r_output'> An object of class Seurat 
- 15252 features across 4933 samples within 1 assay 
- Active assay: RNA (15252 features, 0 variable features)
+ 15197 features across 4918 samples within 1 assay 
+ Active assay: RNA (15197 features, 0 variable features)
 </div>
 ```r
 ## STAR
@@ -97,11 +97,11 @@ s_salmon_hts
 ```
 
 <div class='r_output'> An object of class Seurat 
- 15630 features across 3918 samples within 1 assay 
- Active assay: RNA (15630 features, 0 variable features)
+ 15634 features across 3918 samples within 1 assay 
+ Active assay: RNA (15634 features, 0 variable features)
 </div>
 ```r
-# Need to Check Col names before merge
+# Need to Check Col names before merge 
 
 # they however have different looking cell ids, need to fix
 head(colnames(s_cellranger_orig))
@@ -121,8 +121,8 @@ head(colnames(s_star_hts))
 head(colnames(s_salmon_hts))
 ```
 
-<div class='r_output'> [1] "TGGGAAGCACTACAGT" "CACATAGAGACTAGGC" "GTTTCTAGTTCCACAA" "TACTCATCATAGGATA"
- [5] "CACAGGCCAATCTGCA" "GTAGGCCAGGACAGCT"
+<div class='r_output'> [1] "CGGACACCATTCACTT" "ACATACGAGAGTGAGA" "CTCACACAGAATTGTG" "CACACTCTCGGCCGAT"
+ [5] "CACAGGCCAATCTGCA" "TACTCATCATAGGATA"
 </div>
 ```r
 s_cellranger_orig <- RenameCells(s_cellranger_orig, new.names = sapply(X = strsplit(colnames(s_cellranger_orig), split = "-"), FUN = "[", 1))
@@ -140,7 +140,7 @@ s_list = list(s_cellranger_orig, s_cellranger_hts, s_star_hts, s_salmon_hts)
 ## using the Standare Seurat technique
 
 ### Normalization and Variable Features
-Before we identify integration sites and find anchors, First perform normalization and identify variable features for each
+Before we identify integration sites and find anchors, First perform normalzation and identify variable features for each
 
 
 ```r
@@ -154,12 +154,6 @@ for (i in 1:length(s_standard)) {
 ### Identify "anchors"
 
 Next, we identify anchors using the FindIntegrationAnchors function, which takes a list of Seurat objects as input.
-
-* Representation of two datasets, reference and query, each of which originates from a separate single-cell experiment. The two datasets share cells from similar biological states.
-* Seurat perform canonical correlation analysis, followed by L2 normalization of the canonical correlation vectors, to project the datasets into a subspace defined by shared correlation structure across datasets.
-* In the shared space, Seurat identify pairs of MNNs across reference and query cells. These should represent cells in a shared biological state across datasets and serve as anchors to guide dataset integration. In principle, cells in unique populations should not participate in anchors, but in practice, there will be ‘incorrect’ anchors hopefully at low frequency.
-* For each anchor pair, Seurat assigns a score based on the consistency of anchors across the neighborhood structure of each dataset.
-* The utilizes anchors and their scores to compute ‘correction’ vectors for each query cell, transforming its expression so it can be jointly analyzed as part of an integrated reference.
 
 
 ```r
@@ -190,11 +184,13 @@ s.anchors_standard <- FindIntegrationAnchors(object.list = s_standard, dims = 1:
 </div>
 <div class='r_output'> Finding anchors
 </div>
-<div class='r_output'> 	Found 13785 anchors
+<div class='r_output'> 	Found 13730 anchors
 </div>
 <div class='r_output'> Filtering anchors
 </div>
-<div class='r_output'> 	Retained 10699 anchors
+<div class='r_output'> 	Retained 10677 anchors
+</div>
+<div class='r_output'> Extracting within-dataset neighbors
 </div>
 <div class='r_output'> Running CCA
 </div>
@@ -204,11 +200,13 @@ s.anchors_standard <- FindIntegrationAnchors(object.list = s_standard, dims = 1:
 </div>
 <div class='r_output'> Finding anchors
 </div>
-<div class='r_output'> 	Found 12369 anchors
+<div class='r_output'> 	Found 12422 anchors
 </div>
 <div class='r_output'> Filtering anchors
 </div>
-<div class='r_output'> 	Retained 9806 anchors
+<div class='r_output'> 	Retained 9785 anchors
+</div>
+<div class='r_output'> Extracting within-dataset neighbors
 </div>
 <div class='r_output'> Running CCA
 </div>
@@ -218,11 +216,13 @@ s.anchors_standard <- FindIntegrationAnchors(object.list = s_standard, dims = 1:
 </div>
 <div class='r_output'> Finding anchors
 </div>
-<div class='r_output'> 	Found 12350 anchors
+<div class='r_output'> 	Found 12447 anchors
 </div>
 <div class='r_output'> Filtering anchors
 </div>
-<div class='r_output'> 	Retained 9746 anchors
+<div class='r_output'> 	Retained 9857 anchors
+</div>
+<div class='r_output'> Extracting within-dataset neighbors
 </div>
 <div class='r_output'> Running CCA
 </div>
@@ -232,11 +232,13 @@ s.anchors_standard <- FindIntegrationAnchors(object.list = s_standard, dims = 1:
 </div>
 <div class='r_output'> Finding anchors
 </div>
-<div class='r_output'> 	Found 11843 anchors
+<div class='r_output'> 	Found 11951 anchors
 </div>
 <div class='r_output'> Filtering anchors
 </div>
-<div class='r_output'> 	Retained 9526 anchors
+<div class='r_output'> 	Retained 9582 anchors
+</div>
+<div class='r_output'> Extracting within-dataset neighbors
 </div>
 <div class='r_output'> Running CCA
 </div>
@@ -246,11 +248,13 @@ s.anchors_standard <- FindIntegrationAnchors(object.list = s_standard, dims = 1:
 </div>
 <div class='r_output'> Finding anchors
 </div>
-<div class='r_output'> 	Found 11848 anchors
+<div class='r_output'> 	Found 11865 anchors
 </div>
 <div class='r_output'> Filtering anchors
 </div>
-<div class='r_output'> 	Retained 9554 anchors
+<div class='r_output'> 	Retained 9548 anchors
+</div>
+<div class='r_output'> Extracting within-dataset neighbors
 </div>
 <div class='r_output'> Running CCA
 </div>
@@ -260,17 +264,19 @@ s.anchors_standard <- FindIntegrationAnchors(object.list = s_standard, dims = 1:
 </div>
 <div class='r_output'> Finding anchors
 </div>
-<div class='r_output'> 	Found 11608 anchors
+<div class='r_output'> 	Found 11628 anchors
 </div>
 <div class='r_output'> Filtering anchors
 </div>
-<div class='r_output'> 	Retained 9062 anchors
+<div class='r_output'> 	Retained 9192 anchors
+</div>
+<div class='r_output'> Extracting within-dataset neighbors
 </div>
 ```r
 s.integrated_standard <- IntegrateData(anchorset = s.anchors_standard, dims = 1:30)
 ```
 
-<div class='r_output'> Merging dataset 4 into 2
+<div class='r_output'> Merging dataset 4 into 1
 </div>
 <div class='r_output'> Extracting anchors for merged samples
 </div>
@@ -280,7 +286,7 @@ s.integrated_standard <- IntegrateData(anchorset = s.anchors_standard, dims = 1:
 </div>
 <div class='r_output'> Integrating data
 </div>
-<div class='r_output'> Merging dataset 3 into 1
+<div class='r_output'> Merging dataset 3 into 2
 </div>
 <div class='r_output'> Extracting anchors for merged samples
 </div>
@@ -290,7 +296,7 @@ s.integrated_standard <- IntegrateData(anchorset = s.anchors_standard, dims = 1:
 </div>
 <div class='r_output'> Integrating data
 </div>
-<div class='r_output'> Merging dataset 2 4 into 1 3
+<div class='r_output'> Merging dataset 1 4 into 2 3
 </div>
 <div class='r_output'> Extracting anchors for merged samples
 </div>
@@ -313,7 +319,7 @@ s.integrated_standard
 ```
 
 <div class='r_output'> An object of class Seurat 
- 19218 features across 17889 samples within 2 assays 
+ 19597 features across 17842 samples within 2 assays 
  Active assay: integrated (2000 features, 2000 variable features)
   1 other assay present: RNA
 </div>
@@ -323,8 +329,8 @@ s.integrated_standard
 ```
 
 <div class='r_output'> An object of class Seurat 
- 19218 features across 17889 samples within 2 assays 
- Active assay: RNA (17218 features, 0 variable features)
+ 19597 features across 17842 samples within 2 assays 
+ Active assay: RNA (17597 features, 0 variable features)
   1 other assay present: integrated
 </div>
 ```r
@@ -333,7 +339,7 @@ s.integrated_standard
 ```
 
 <div class='r_output'> An object of class Seurat 
- 19218 features across 17889 samples within 2 assays 
+ 19597 features across 17842 samples within 2 assays 
  Active assay: integrated (2000 features, 2000 variable features)
   1 other assay present: RNA
 </div>
@@ -353,26 +359,26 @@ s.integrated_standard <- RunUMAP(s.integrated_standard, reduction = "pca", dims 
  To use Python UMAP via reticulate, set umap.method to 'umap-learn' and metric to 'correlation'
  This message will be shown once per session
 </div>
-<div class='r_output'> 08:41:18 UMAP embedding parameters a = 0.9922 b = 1.112
+<div class='r_output'> 07:27:59 UMAP embedding parameters a = 0.9922 b = 1.112
 </div>
-<div class='r_output'> 08:41:18 Read 17889 rows and found 30 numeric columns
+<div class='r_output'> 07:27:59 Read 17842 rows and found 30 numeric columns
 </div>
-<div class='r_output'> 08:41:18 Using Annoy for neighbor search, n_neighbors = 30
+<div class='r_output'> 07:27:59 Using Annoy for neighbor search, n_neighbors = 30
 </div>
-<div class='r_output'> 08:41:18 Building Annoy index with metric = cosine, n_trees = 50
+<div class='r_output'> 07:27:59 Building Annoy index with metric = cosine, n_trees = 50
 </div>
 <div class='r_output'> 0%   10   20   30   40   50   60   70   80   90   100%
 </div>
 <div class='r_output'> [----|----|----|----|----|----|----|----|----|----|
 </div>
 <div class='r_output'> **************************************************|
- 08:41:21 Writing NN index file to temp file /var/folders/74/h45z17f14l9g34tmffgq9nkw0000gn/T//Rtmpe0LFoY/file2bba5dcd1fc1
- 08:41:21 Searching Annoy index using 1 thread, search_k = 3000
- 08:41:26 Annoy recall = 100%
- 08:41:26 Commencing smooth kNN distance calibration using 1 thread
- 08:41:27 Initializing from normalized Laplacian + noise
- 08:41:29 Commencing optimization for 200 epochs, with 797120 positive edges
- 08:41:37 Optimization finished
+ 07:28:02 Writing NN index file to temp file /var/folders/74/h45z17f14l9g34tmffgq9nkw0000gn/T//RtmpjoDPLs/file172534f1f53cb
+ 07:28:02 Searching Annoy index using 1 thread, search_k = 3000
+ 07:28:08 Annoy recall = 100%
+ 07:28:08 Commencing smooth kNN distance calibration using 1 thread
+ 07:28:09 Initializing from normalized Laplacian + noise
+ 07:28:11 Commencing optimization for 200 epochs, with 795910 positive edges
+ 07:28:19 Optimization finished
 </div>
 ```r
 DimPlot(s.integrated_standard, reduction = "umap")
@@ -421,13 +427,13 @@ s.integrated_standard <- FindClusters(s.integrated_standard, resolution = 0.5)
 
 <div class='r_output'> Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
  
- Number of nodes: 17889
- Number of edges: 764274
+ Number of nodes: 17842
+ Number of edges: 761977
  
  Running Louvain algorithm...
- Maximum modularity in 10 random starts: 0.9456
- Number of communities: 22
- Elapsed time: 1 seconds
+ Maximum modularity in 10 random starts: 0.9468
+ Number of communities: 25
+ Elapsed time: 2 seconds
 </div>
 ```r
 p1 <- DimPlot(s.integrated_standard, reduction = "umap", group.by = "orig.ident")
@@ -453,28 +459,31 @@ t
 
 <div class='r_output'>     
       cellranger cellranger_hts salmon star
-   0         556            553    551  552
-   1         548            548    479  506
-   2         643            636    317  415
-   3         446            446    364  396
-   4         425            425    377  396
-   5         404            403    346  368
-   6         317            322    263  278
-   7         196            196    180  183
-   8         141            142    119  130
-   9         137            137    119  130
-   10        141            136     84  100
-   11        110            113     85   95
-   12        137            134    125    2
-   13        108            108     84   94
-   14        104            107     75   82
-   15        140            136     38   33
-   16         83             85     79   83
-   17        106            107     52   65
-   18         75             77     67   73
-   19         57             57     54   56
-   20         54             54     50   51
-   21         11             11     10   11
+   0         430            431    430  430
+   1         446            451    361  395
+   2         527            535    245  335
+   3         426            428    379  398
+   4         407            405    348  367
+   5         338            336    279  294
+   6         325            325    261  287
+   7         224            224    217  220
+   8         202            203    181  187
+   9         166            167    119  135
+   10        158            160    119  132
+   11        148            149    119  131
+   12        141            142    121  131
+   13        107            107    104  106
+   14        142            141     51   49
+   15        122            126    127    3
+   16        102            101     80   90
+   17        111            110     54   66
+   18         77             76     70   75
+   19         55             55     51   51
+   20         52             52     51   53
+   21         63             59     38   43
+   22         51             51     48   50
+   23         50             47     46   48
+   24         37             37     19   23
 </div>
 ```r
 round(sweep(t,MARGIN=2, STATS=colSums(t), FUN = "/")*100,1)
@@ -482,61 +491,64 @@ round(sweep(t,MARGIN=2, STATS=colSums(t), FUN = "/")*100,1)
 
 <div class='r_output'>     
       cellranger cellranger_hts salmon star
-   0        11.3           11.2   14.1 13.5
-   1        11.1           11.1   12.2 12.3
-   2        13.0           12.9    8.1 10.1
-   3         9.0            9.0    9.3  9.7
-   4         8.6            8.6    9.6  9.7
-   5         8.2            8.2    8.8  9.0
-   6         6.4            6.5    6.7  6.8
-   7         4.0            4.0    4.6  4.5
-   8         2.9            2.9    3.0  3.2
-   9         2.8            2.8    3.0  3.2
-   10        2.9            2.8    2.1  2.4
-   11        2.2            2.3    2.2  2.3
-   12        2.8            2.7    3.2  0.0
-   13        2.2            2.2    2.1  2.3
-   14        2.1            2.2    1.9  2.0
-   15        2.8            2.8    1.0  0.8
-   16        1.7            1.7    2.0  2.0
-   17        2.1            2.2    1.3  1.6
-   18        1.5            1.6    1.7  1.8
-   19        1.2            1.2    1.4  1.4
-   20        1.1            1.1    1.3  1.2
-   21        0.2            0.2    0.3  0.3
-</div>### Lets Zero in on cluster 12 some more
+   0         8.8            8.8   11.0 10.5
+   1         9.1            9.2    9.2  9.6
+   2        10.7           10.9    6.3  8.2
+   3         8.7            8.7    9.7  9.7
+   4         8.3            8.2    8.9  9.0
+   5         6.9            6.8    7.1  7.2
+   6         6.6            6.6    6.7  7.0
+   7         4.6            4.6    5.5  5.4
+   8         4.1            4.1    4.6  4.6
+   9         3.4            3.4    3.0  3.3
+   10        3.2            3.3    3.0  3.2
+   11        3.0            3.0    3.0  3.2
+   12        2.9            2.9    3.1  3.2
+   13        2.2            2.2    2.7  2.6
+   14        2.9            2.9    1.3  1.2
+   15        2.5            2.6    3.2  0.1
+   16        2.1            2.1    2.0  2.2
+   17        2.3            2.2    1.4  1.6
+   18        1.6            1.5    1.8  1.8
+   19        1.1            1.1    1.3  1.2
+   20        1.1            1.1    1.3  1.3
+   21        1.3            1.2    1.0  1.0
+   22        1.0            1.0    1.2  1.2
+   23        1.0            1.0    1.2  1.2
+   24        0.8            0.8    0.5  0.6
+</div>### Lets Zero in on cluster 15 some more
 
 
 ```r
-markers = FindMarkers(s.integrated_standard, ident.1="12")
+markers = FindMarkers(s.integrated_standard, ident.1="15")
 top10 <- rownames(markers)[1:10]
 head(markers)
 ```
 
-<div class='r_output'>                 p_val avg_logFC pct.1 pct.2     p_val_adj
- Calm1   1.165630e-197 -1.977439 0.440 0.983 2.331261e-194
- Slc25a4 1.831204e-178 -1.907351 0.452 0.952 3.662408e-175
- Cox8a   7.071522e-171 -1.672094 0.462 0.970 1.414304e-167
- Ppia    1.063330e-168 -1.789062 0.653 0.979 2.126661e-165
- Oaz1    3.671981e-161 -1.683867 0.513 0.945 7.343963e-158
- Calm2   8.882593e-161 -1.498434 0.555 0.990 1.776519e-157
+<div class='r_output'>               p_val avg_logFC pct.1 pct.2     p_val_adj
+ Calm1 1.926295e-180 -1.889314 0.550 0.984 3.852590e-177
+ Cox8a 3.445073e-164 -1.700591 0.444 0.969 6.890145e-161
+ Ppia  1.860959e-161 -1.804402 0.648 0.980 3.721918e-158
+ Cox6c 1.457237e-152 -1.679867 0.323 0.935 2.914474e-149
+ Actb  7.767536e-152 -1.964185 0.624 0.991 1.553507e-148
+ Stmn3 1.262762e-151 -1.806284 0.468 0.922 2.525524e-148
 </div>
 ```r
-cluster12 <- subset(s.integrated_standard, idents = "12")
-Idents(cluster12) <- "orig.ident"
-avg.cell.exp <- log1p(AverageExpression(cluster12, verbose = FALSE)$RNA)
+cluster15 <- subset(s.integrated_standard, idents = "15")
+Idents(cluster15) <- "orig.ident"
+avg.cell.exp <- log1p(AverageExpression(cluster15, verbose = FALSE)$RNA)
 avg.cell.exp$gene <- rownames(avg.cell.exp)
 
 head(avg.cell.exp)
 ```
 
 <div class='r_output'>        cellranger cellranger_hts     star    salmon   gene
- Xkr4   0.00000000     0.00000000 0.000000 0.0000000   Xkr4
- Sox17  0.12812093     0.12922176 0.000000 0.1835802  Sox17
- Mrpl15 0.00000000     0.00000000 0.000000 0.0000000 Mrpl15
- Lypla1 0.45449855     0.46387699 1.589267 0.5199105 Lypla1
- Tcea1  0.08880363     0.09048414 0.000000 0.3897373  Tcea1
- Rgs20  0.00000000     0.00000000 0.000000 0.0000000  Rgs20
+ Xkr4    0.0000000     0.00000000 0.000000 0.0000000   Xkr4
+ Sox17   0.1443089     0.13880722 0.000000 0.1805196  Sox17
+ Mrpl15  0.0000000     0.00000000 0.000000 0.0000000 Mrpl15
+ Lypla1  0.5149806     0.50052080 1.280963 0.5133444 Lypla1
+ Tcea1   0.1020398     0.09822009 0.000000 0.3844843  Tcea1
+ Rgs20   0.0000000     0.00000000 0.000000 0.0000000  Rgs20
 </div>
 ```r
 p1 <- ggplot(avg.cell.exp, aes(cellranger, cellranger_hts)) + geom_point() + ggtitle("cellranger_hts vs cellranger")
@@ -546,14 +558,14 @@ p1 <- LabelPoints(plot = p1, points = top10, repel = TRUE)
 <div class='r_output'> When using repel, set xnudge and ynudge to 0 for optimal results
 </div>
 ```r
-p2 <- ggplot(avg.cell.exp, aes(cellranger_hts, star)) + geom_point() + ggtitle("star_hts vs cellranger_hts")
+p2 <- ggplot(avg.cell.exp, aes(cellranger, star)) + geom_point() + ggtitle("star_hts vs cellranger")
 p2 <- LabelPoints(plot = p2, points = top10, repel = TRUE)
 ```
 
 <div class='r_output'> When using repel, set xnudge and ynudge to 0 for optimal results
 </div>
 ```r
-p3 <- ggplot(avg.cell.exp, aes(cellranger_hts, salmon)) + geom_point() + ggtitle("salmon_hts vs cellranger_hts")
+p3 <- ggplot(avg.cell.exp, aes(cellranger, salmon)) + geom_point() + ggtitle("salmon_hts vs cellranger")
 p3 <- LabelPoints(plot = p3, points = top10, repel = TRUE)
 ```
 
@@ -567,10 +579,10 @@ plot_grid(p1,p2,p3, ncol = 2)
 
 ### Possible continued analysis
 
-We know the majority of 'cells' are in common between the datasets, so how is the cell barcode representation in each cluster. So for this cluster 12, what is the overlap in cells for cellranger/salmon/star if those cells are present in star, where did they go? Which cluster can they be found in.
+We know the majority of 'cells' are in common between the datasets, so how is the cell barcode representation in each cluster. So for this cluster 15, what is the overlap in cells for cellranger/salmon/star if those cells are present in star, where did they go? Which cluster can they be found in.
 
 **How I would go about doing this**
-Get the superset of cell barcode from all 4 methods for cluster 12. Then extract these cells from the whole dataset (subset) and table the occurace of this subset of cells [superset of those found in 12], sample by cluster like we did above.
+Get the superset of cell barcode from all 4 methods for cluster 15. Then extract these cells from the whole dataset (subset) and table the occurace of this subset of cells [superset of those found in 15], sample by cluster like we did above.
 
 **ALSO**
 
@@ -596,11 +608,11 @@ for (i in 1:length(s_sct)) {
 ```r
 s_features_sct <- SelectIntegrationFeatures(object.list = s_sct, nfeatures = 2000)
 
-s_sct <- PrepSCTIntegration(object.list = s_sct, anchor.features = s_features_sct, 
+s_sct <- PrepSCTIntegration(object.list = s_sct, anchor.features = s_features, 
     verbose = FALSE)
 ```
 
-### Identify anchors and integrate the datasets.
+### Identify anchors and integrate the datasets. 
 
 Commands are identical to the standard workflow, but make sure to set normalization.method = 'SCT':
 
@@ -635,21 +647,15 @@ regularized negative binomial regression](https://www.biorxiv.org/content/10.110
 save(s.integrated_standard,file="anchored_object.RData")
 ```
 
-## Also we will save a RDS file for usage in the shiny app as well:
-
-```r
-saveRDS(s.integrated_standard, file = "anchoring.rds")
-```
-
 ## Session Information
 
 ```r
 sessionInfo()
 ```
 
-<div class='r_output'> R version 4.0.2 (2020-06-22)
+<div class='r_output'> R version 4.0.0 (2020-04-24)
  Platform: x86_64-apple-darwin17.0 (64-bit)
- Running under: macOS Catalina 10.15.5
+ Running under: macOS Catalina 10.15.4
  
  Matrix products: default
  BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
@@ -662,47 +668,43 @@ sessionInfo()
  [1] stats     graphics  grDevices datasets  utils     methods   base     
  
  other attached packages:
- [1] cowplot_1.0.0     ggVennDiagram_0.3 ggplot2_3.3.2     tximport_1.16.1  
- [5] Seurat_3.2.0     
+ [1] cowplot_1.0.0     ggVennDiagram_0.3 ggplot2_3.3.0     tximport_1.16.0  
+ [5] Seurat_3.1.5     
  
  loaded via a namespace (and not attached):
-   [1] Rtsne_0.15            colorspace_1.4-1      deldir_0.1-28        
-   [4] ellipsis_0.3.1        class_7.3-17          ggridges_0.5.2       
-   [7] futile.logger_1.4.3   spatstat.data_1.4-3   farver_2.0.3         
-  [10] leiden_0.3.3          listenv_0.8.0         bit64_4.0.2          
-  [13] ggrepel_0.8.2         RSpectra_0.16-0       codetools_0.2-16     
-  [16] splines_4.0.2         knitr_1.29            polyclip_1.10-0      
-  [19] jsonlite_1.7.0        ica_1.0-2             cluster_2.1.0        
-  [22] png_0.1-7             uwot_0.1.8            shiny_1.5.0          
-  [25] sctransform_0.2.1     compiler_4.0.2        httr_1.4.2           
-  [28] Matrix_1.2-18         fastmap_1.0.1         lazyeval_0.2.2       
-  [31] limma_3.44.3          later_1.1.0.1         formatR_1.7          
-  [34] htmltools_0.5.0       tools_4.0.2           rsvd_1.0.3           
-  [37] igraph_1.2.5          gtable_0.3.0          glue_1.4.1           
-  [40] RANN_2.6.1            reshape2_1.4.4        dplyr_1.0.2          
-  [43] Rcpp_1.0.5            spatstat_1.64-1       vctrs_0.3.2          
-  [46] ape_5.4-1             nlme_3.1-148          lmtest_0.9-37        
-  [49] xfun_0.16             stringr_1.4.0         globals_0.12.5       
-  [52] mime_0.9              miniUI_0.1.1.1        lifecycle_0.2.0      
-  [55] irlba_2.3.3           renv_0.11.0           goftest_1.2-2        
-  [58] future_1.18.0         MASS_7.3-51.6         zoo_1.8-8            
-  [61] scales_1.1.1          promises_1.1.1        spatstat.utils_1.17-0
-  [64] parallel_4.0.2        lambda.r_1.2.4        RColorBrewer_1.1-2   
-  [67] yaml_2.2.1            reticulate_1.16       pbapply_1.4-3        
-  [70] gridExtra_2.3         rpart_4.1-15          stringi_1.4.6        
-  [73] e1071_1.7-3           rlang_0.4.7           pkgconfig_2.0.3      
-  [76] evaluate_0.14         lattice_0.20-41       ROCR_1.0-11          
-  [79] purrr_0.3.4           tensor_1.5            sf_0.9-5             
-  [82] labeling_0.3          patchwork_1.0.1       htmlwidgets_1.5.1    
-  [85] bit_4.0.4             tidyselect_1.1.0      RcppAnnoy_0.0.16     
-  [88] plyr_1.8.6            magrittr_1.5          R6_2.4.1             
-  [91] generics_0.0.2        DBI_1.1.0             pillar_1.4.6         
-  [94] withr_2.2.0           mgcv_1.8-31           fitdistrplus_1.1-1   
-  [97] units_0.6-7           survival_3.2-3        abind_1.4-5          
- [100] tibble_3.0.3          future.apply_1.6.0    crayon_1.3.4         
- [103] hdf5r_1.3.3           futile.options_1.0.1  KernSmooth_2.23-17   
- [106] plotly_4.9.2.1        rmarkdown_2.3         grid_4.0.2           
- [109] data.table_1.13.0     digest_0.6.25         classInt_0.4-3       
- [112] xtable_1.8-4          VennDiagram_1.6.20    tidyr_1.1.1          
- [115] httpuv_1.5.4          munsell_0.5.0         viridisLite_0.3.0
+   [1] nlme_3.1-148         tsne_0.1-3           sf_0.9-3            
+   [4] bit64_0.9-7          RcppAnnoy_0.0.16     RColorBrewer_1.1-2  
+   [7] httr_1.4.1           sctransform_0.2.1    tools_4.0.0         
+  [10] R6_2.4.1             irlba_2.3.3          KernSmooth_2.23-17  
+  [13] DBI_1.1.0            uwot_0.1.8           lazyeval_0.2.2      
+  [16] colorspace_1.4-1     withr_2.2.0          tidyselect_1.1.0    
+  [19] gridExtra_2.3        bit_1.1-15.2         compiler_4.0.0      
+  [22] VennDiagram_1.6.20   formatR_1.7          hdf5r_1.3.2         
+  [25] plotly_4.9.2.1       labeling_0.3         scales_1.1.1        
+  [28] classInt_0.4-3       lmtest_0.9-37        ggridges_0.5.2      
+  [31] pbapply_1.4-2        stringr_1.4.0        digest_0.6.25       
+  [34] rmarkdown_2.1        pkgconfig_2.0.3      htmltools_0.4.0     
+  [37] limma_3.44.1         htmlwidgets_1.5.1    rlang_0.4.6         
+  [40] farver_2.0.3         zoo_1.8-8            jsonlite_1.6.1      
+  [43] ica_1.0-2            dplyr_0.8.5          magrittr_1.5        
+  [46] futile.logger_1.4.3  patchwork_1.0.0      Matrix_1.2-18       
+  [49] Rcpp_1.0.4.6         munsell_0.5.0        ape_5.3             
+  [52] reticulate_1.15      lifecycle_0.2.0      stringi_1.4.6       
+  [55] yaml_2.2.1           MASS_7.3-51.6        Rtsne_0.15          
+  [58] plyr_1.8.6           grid_4.0.0           parallel_4.0.0      
+  [61] listenv_0.8.0        ggrepel_0.8.2        crayon_1.3.4        
+  [64] lattice_0.20-41      splines_4.0.0        knitr_1.28          
+  [67] pillar_1.4.4         igraph_1.2.5         future.apply_1.5.0  
+  [70] reshape2_1.4.4       codetools_0.2-16     futile.options_1.0.1
+  [73] leiden_0.3.3         glue_1.4.1           evaluate_0.14       
+  [76] lambda.r_1.2.4       data.table_1.12.8    renv_0.10.0         
+  [79] BiocManager_1.30.10  png_0.1-7            vctrs_0.3.0         
+  [82] gtable_0.3.0         RANN_2.6.1           purrr_0.3.4         
+  [85] tidyr_1.1.0          future_1.17.0        assertthat_0.2.1    
+  [88] xfun_0.14            rsvd_1.0.3           RSpectra_0.16-0     
+  [91] e1071_1.7-3          class_7.3-17         survival_3.1-12     
+  [94] viridisLite_0.3.0    tibble_3.0.1         units_0.6-6         
+  [97] cluster_2.1.0        globals_0.12.5       fitdistrplus_1.1-1  
+ [100] ellipsis_0.3.1       ROCR_1.0-11
 </div>
+

@@ -320,11 +320,11 @@ Alevin works in two phases. In the first phase it quickly parses the read file c
 
 ```bash
 cd /share/workshop/adv_scrnaseq/$USER
- module load cmake
+module load cmake
 
- wget https://github.com/COMBINE-lab/salmon/archive/v1.3.0.tar.gz
- tar xzvf v1.3.0.tar.gz
- cd salmon-1.3.0/
+wget https://github.com/COMBINE-lab/salmon/archive/v1.3.0.tar.gz
+tar xzvf v1.3.0.tar.gz
+cd salmon-1.3.0/
 
 mkdir build
 cd  build/
@@ -334,7 +334,7 @@ cmake -DFETCH_BOOST=TRUE -DCMAKE_INSTALL_PREFIX=/share/workshop/adv_scrnaseq/$US
 make
 make test
 make install
-export PATH=/share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/salmon-1.3.0/build/src:$PATH
+export PATH=/share/workshop/adv_scrnaseq/$USER/salmon-1.3.0/build/src/:$PATH
 ```
 **OR**
 

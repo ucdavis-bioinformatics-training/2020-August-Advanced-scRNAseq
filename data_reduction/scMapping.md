@@ -354,7 +354,7 @@ sed -i.bak -e 's/>//g' decoys.txt
 
 cat Mus_musculus.GRCm38.cdna.all.fa Mus_musculus.GRCm38.dna.primary_assembly.fa > gentrome.fa
 
-salmon index -p 4 -t gentrome.fa.gz -d decoys.txt -i GRCm38.salmon_decoys
+salmon index -p 4 -t gentrome.fa -d decoys.txt -i GRCm38.salmon_decoys
 ```
 
 ### Mapping with Salmon

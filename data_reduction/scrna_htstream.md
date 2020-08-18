@@ -201,7 +201,7 @@ hts_PolyATTrim -A scRNA.log -N 'trim 3 prime plolyA' \
 hts_NTrimmer -A scRNA.log -N 'Remove any N characters' | \
 hts_QWindowTrim -A scRNA.log -N 'Quality window trim' | \
 hts_LengthFilter -A scRNA.log -N 'Removed any read shorter than 50bp' \
-    -m 50 -s -n | \
+    -m 50 -s | \
 hts_SeqScreener -A scRNA.log -N 'Screen out any potential adapter dimers' \
     --check-read-2 \
     -s screen.fa | \
@@ -211,7 +211,7 @@ hts_SeqScreener -A scRNA.log -N 'count the number of rRNA reads'\
     -s mouse_rrna.fasta | \
 extract_BC-UMI.py --insert --read 1 | \
 hts_Stats -A scRNA.log -N 'final stats' \
-    -f processed_file -F"
+    -f processed_file -F
 ```
 
 ### Workflow description

@@ -15,8 +15,8 @@ This assumes you've first complete this [page](scrna_htstream.md)
 Unfortunately, Cellranger expects a very specific filename format, the bcl2fasq output, so we need to rename the htstream output files.
 
 ```bash
-mv /share/workshop/adv_scrnaseq/msettles/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_R1.fastq.gz  /share/workshop/adv_scrnaseq/msettles/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_S1_L001_R1_001.fastq.gz
-mv /share/workshop/adv_scrnaseq/msettles/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_R2.fastq.gz  /share/workshop/adv_scrnaseq/msettles/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_S1_L001_R2_001.fastq.gz
+mv /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_R1.fastq.gz  /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_S1_L001_R1_001.fastq.gz
+mv /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_R2.fastq.gz  /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/01-HTStream/654_small_htstream/654_small_htstream_S1_L001_R2_001.fastq.gz
 ```
 
 ### For the sake of time (building references can take hours) we are going to link a finished references, but when time allows

@@ -56,7 +56,7 @@ Lets spend a minute looking at the reports and the data
 
 In the R console run the following command.
 ```r
-download.file("https://bioshare.bioinformatics.ucdavis.edu/bioshare/download/iimg5mz77whzzqc/Adv_comparison_outputs.zip", "Adv_comparison_outputs.zip")
+download.file("https://bioshare.bioinformatics.ucdavis.edu/bioshare/download/iimg5mz77whzzqc/Adv_comparison_outputs.zip", "Adv_comparison_outputs.zip", method = "wget")
 zipf <- "Adv_comparison_outputs.zip"
 outdir <- "."
 unzip(zipf, exdir=outdir)

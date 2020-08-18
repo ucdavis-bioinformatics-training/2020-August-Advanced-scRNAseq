@@ -80,7 +80,7 @@ s_list = list(s_cellranger_orig, s_cellranger_hts, s_star_hts, s_salmon_hts)
 ## using the Standare Seurat technique
 
 ### Normalization and Variable Features
-Before we identify integration sites and find anchors, First perform normalzation and identify variable features for each
+Before we identify integration sites and find anchors, First perform normalization and identify variable features for each
 
 ```{r}
 s_standard = s_list
@@ -93,6 +93,12 @@ for (i in 1:length(s_standard)) {
 ### Identify "anchors"
 
 Next, we identify anchors using the FindIntegrationAnchors function, which takes a list of Seurat objects as input.
+
+* Representation of two datasets, reference and query, each of which originates from a separate single-cell experiment. The two datasets share cells from similar biological states.
+* Seurat perform canonical correlation analysis, followed by L2 normalization of the canonical correlation vectors, to project the datasets into a subspace defined by shared correlation structure across datasets.
+* In the shared space, Seurat identify pairs of MNNs across reference and query cells. These should represent cells in a shared biological state across datasets and serve as anchors to guide dataset integration. In principle, cells in unique populations should not participate in anchors, but in practice, there will be ‘incorrect’ anchors hopefully at low frequency.
+* For each anchor pair, Seurat assigns a score based on the consistency of anchors across the neighborhood structure of each dataset.
+* The utilizes anchors and their scores to compute ‘correction’ vectors for each query cell, transforming its expression so it can be jointly analyzed as part of an integrated reference.
 
 ```{r eval = FALSE}
 ?FindIntegrationAnchors
@@ -170,35 +176,35 @@ t <- table(s.integrated_standard$integrated_snn_res.0.5, s.integrated_standard$o
 t
 round(sweep(t,MARGIN=2, STATS=colSums(t), FUN = "/")*100,1)
 ```
-### Lets Zero in on cluster 15 some more
+### Lets Zero in on cluster 12 some more
 
 ```{r fig.width=8}
-markers = FindMarkers(s.integrated_standard, ident.1="15")
+markers = FindMarkers(s.integrated_standard, ident.1="12")
 top10 <- rownames(markers)[1:10]
 head(markers)
 
-cluster15 <- subset(s.integrated_standard, idents = "15")
-Idents(cluster15) <- "orig.ident"
-avg.cell.exp <- log1p(AverageExpression(cluster15, verbose = FALSE)$RNA)
+cluster12 <- subset(s.integrated_standard, idents = "12")
+Idents(cluster12) <- "orig.ident"
+avg.cell.exp <- log1p(AverageExpression(cluster12, verbose = FALSE)$RNA)
 avg.cell.exp$gene <- rownames(avg.cell.exp)
 
 head(avg.cell.exp)
 
 p1 <- ggplot(avg.cell.exp, aes(cellranger, cellranger_hts)) + geom_point() + ggtitle("cellranger_hts vs cellranger")
 p1 <- LabelPoints(plot = p1, points = top10, repel = TRUE)
-p2 <- ggplot(avg.cell.exp, aes(cellranger, star)) + geom_point() + ggtitle("star_hts vs cellranger")
+p2 <- ggplot(avg.cell.exp, aes(cellranger_hts, star)) + geom_point() + ggtitle("star_hts vs cellranger_hts")
 p2 <- LabelPoints(plot = p2, points = top10, repel = TRUE)
-p3 <- ggplot(avg.cell.exp, aes(cellranger, salmon)) + geom_point() + ggtitle("salmon_hts vs cellranger")
+p3 <- ggplot(avg.cell.exp, aes(cellranger_hts, salmon)) + geom_point() + ggtitle("salmon_hts vs cellranger_hts")
 p3 <- LabelPoints(plot = p3, points = top10, repel = TRUE)
 plot_grid(p1,p2,p3, ncol = 2)
 ```
 
 ### Possible continued analysis
 
-We know the majority of 'cells' are in common between the datasets, so how is the cell barcode representation in each cluster. So for this cluster 15, what is the overlap in cells for cellranger/salmon/star if those cells are present in star, where did they go? Which cluster can they be found in.
+We know the majority of 'cells' are in common between the datasets, so how is the cell barcode representation in each cluster. So for this cluster 12, what is the overlap in cells for cellranger/salmon/star if those cells are present in star, where did they go? Which cluster can they be found in.
 
 **How I would go about doing this**
-Get the superset of cell barcode from all 4 methods for cluster 15. Then extract these cells from the whole dataset (subset) and table the occurace of this subset of cells [superset of those found in 15], sample by cluster like we did above.
+Get the superset of cell barcode from all 4 methods for cluster 12. Then extract these cells from the whole dataset (subset) and table the occurace of this subset of cells [superset of those found in 12], sample by cluster like we did above.
 
 **ALSO**
 

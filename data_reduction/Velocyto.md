@@ -59,7 +59,7 @@ If the environment 'activated' properly, than your prompt should look something 
 
 If not you can try to initialize your bash
 ```bash
-kinit
+aklog
 conda init bash
 source /home/$USER/.bashrc
 conda activate /share/workshop/adv_scrnaseq/$USER/velocyto
@@ -81,7 +81,7 @@ velocyto --help
 It is also recommended to use a repetative sequence mask file, this is easiest to obtain from the [UCSC genome browser](https://genome.ucsc.edu/cgi-bin/hgTables?hgsid=611454127_NtvlaW6xBSIRYJEBI0iRDEWisITa&clade=mammal&org=Mouse&db=mm10&hgta_group=allTracks&hgta_track=rmsk&hgta_table=0&hgta_regionType=genome&position=chr12%3A56694976-56714605&hgta_outputType=primaryTable&hgta_outputType=gff&hgta_outFileName=mm10_rmsk.gtf
 ).
 
-You want to download the mask in gtf format. Unfortunately, Ensembl doesn't provide a gtf file for th repeat sequences and we'd have to generate one ourselves (write a script to do so) which is beyond the scope of this workshop.
+You want to download the mask in gtf format. Unfortunately, Ensembl doesn't provide a gtf file for the repeat sequences and we'd have to generate one ourselves (write a script to do so) which is beyond the scope of this workshop.
 
 ###  Running Velocyto on Cellranger output
 
@@ -96,6 +96,13 @@ Ok, now we are ready to run this on our sample
 ```bash
 cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing
 velocyto run10x  654_small References/Mus_musculus.GRCm38.100.filtered.gtf
+```
+
+**This does fail to complete, the dataset is too small***
+If you'd like to run to completion you can copy over the cellranger full dataset
+
+```bash
+cp -r /share/biocore/workshops/2020_scRNAseq/dataset_654/654 /share/workshop/adv_scrnaseq/msettles/scrnaseq_processing/654
 ```
 
 ### Output
@@ -134,7 +141,7 @@ drwxrwsr-x 5 msettles biocore  20 May 28 07:22 ..
 -rw-rw-r-- 1 msettles biocore 56M May 28 08:52 654.loom
 ```
 
-I expect that the 654_small dataset will fail as their aren't enough reads, but on a full dataset it produces the loom file.
+I expect that the 654_small dataset fails because their aren't enough reads, but on a full dataset it produces the loom file.
 
 ### More reading
 

@@ -98,11 +98,11 @@ cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing
 velocyto run10x  654_small References/Mus_musculus.GRCm38.100.filtered.gtf
 ```
 
-**This does fail to complete, the dataset is too small***
+**This does fail to complete, the dataset is too small**
 If you'd like to run to completion you can copy over the cellranger full dataset
 
 ```bash
-cp -r /share/biocore/workshops/2020_scRNAseq/dataset_654/654 /share/workshop/adv_scrnaseq/msettles/scrnaseq_processing/654
+cp -r /share/biocore/workshops/2020_scRNAseq/dataset_654/654 /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/654
 ```
 
 ### Output

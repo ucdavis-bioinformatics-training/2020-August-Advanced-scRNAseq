@@ -59,7 +59,7 @@ If the environment 'activated' properly, than your prompt should look something 
 
 If not you can try to initialize your bash
 ```bash
-kinit
+aklog
 conda init bash
 source /home/$USER/.bashrc
 conda activate /share/workshop/adv_scrnaseq/$USER/velocyto

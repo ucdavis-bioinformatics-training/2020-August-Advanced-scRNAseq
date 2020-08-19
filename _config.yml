@@ -16,7 +16,7 @@ navigation:
   - title: Experimental Design and Cost Estimation
     url: https://raw.githubusercontent.com/ucdavis-bioinformatics-training/ucdavis-bioinformatics-training.presentations/master/singlecell/scRNAseq-expDesign_May_2020.pdf
   - title: Single Cell Sample Preparation - Dr. Diana Burkart-Waco
-    url: https://raw.githubusercontent.com/ucdavis-bioinformatics-training/ucdavis-bioinformatics-training.presentations/master/singlecell/2020_SingleCell_SampleTalk_DBurkart.pdf
+    url: https://raw.githubusercontent.com/ucdavis-bioinformatics-training/ucdavis-bioinformatics-training.presentations/master/singlecell/2020_SingleCell_SampleTalk_DBurkart_Aug18.pdf
 
   - heading: Support
   - title: Using Slack in this workshop
@@ -80,7 +80,7 @@ navigation:
   - title: scRNA analysis prepare, part 2
     url: data_analysis/scrna_analysis_prepare2_fixed
   - title: Monocle
-    url: data_analysis/adv_scrnaseq_monocle_fixed
+    url: data_analysis/adv_scrnaseq_monocle
   - title: VDJ T cell and B cell analysis
     url: data_analysis/VDJ_Analysis_fixed
   - title: Velocity  analysis

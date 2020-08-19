@@ -37,8 +37,8 @@
 **2:30 pm**  _Hands on_    
 **3:00 pm**  15 minute break    
 **3:15 pm**  [Shiny App by Keith Mitchell](../data_analysis/shiny_app_install)     
-        *   [Shiny Practical](../data_analysis/shiny_practical)    
-        *   [Shiny in AWS](../data_analysis/shiny_on_aws)    
+        *   [Shiny Practical](../data_analysis/shiny_practical) (_Hands on_)     
+        *   [Shiny in AWS](../data_analysis/shiny_on_aws) (_Optional_)  
 **4:45 pm**  Recap and Homework    
 **5:00 pm**  Zoom session ends   
 

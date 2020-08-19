@@ -245,7 +245,7 @@ less /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/01-HTStream/654_smal
 
 ## Multiqc for HTStream
 
-Intall the fork of [Multiqc with HTStream support](https://github.com/s4hts/HTStream) a fork of [Multiqc](https://github.com/ewels/MultiQC)
+Intall the fork of [Multiqc with HTStream support](https://github.com/s4hts/MultiQC) a fork of [Multiqc](https://github.com/ewels/MultiQC)
 
 ```bash
 cd /share/workshop/adv_scrnaseq/$USER/scrnaseq_processing/

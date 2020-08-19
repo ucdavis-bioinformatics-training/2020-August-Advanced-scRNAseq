@@ -1,17 +1,17 @@
 # Starting a Shiny Server Instance from the Preconfigured Image
 
 #### Keith Mitchell (kgmitchell@ucdavis.edu)
+- email me and I can send you a preconfigured instance (AMI) directly to your AWS account!
+
 ***
-## A few general notes:
-- be sure Adam has granted you an IAM account on the UC Davis Bioinformatics AWS account. 
-- Do not nuke the Zulip instances!
-- The following has been adapted from: 
-    - https://towardsdatascience.com/how-to-host-a-r-shiny-app-on-aws-cloud-in-7-simple-steps-5595e7885722
+
+## Visit here to see how the instance was initially configured:
+- https://towardsdatascience.com/how-to-host-a-r-shiny-app-on-aws-cloud-in-7-simple-steps-5595e7885722
 
 ## Setting up an AWS account for yourself
 - For the first year of your account being active AWS offers tons of free, cool services! One of which is a
-micro EC2 instance which might be enough for some datasets. A medium, large instance run about 30$, 60$ per month. 
-    - Here is more info on the pricing: https://aws.amazon.com/ec2/pricing/ 
+micro EC2 instance which might be enough for some datasets. A medium, large instance run about 40$, 70$ per month. 
+- Here is more info on the pricing: https://aws.amazon.com/ec2/pricing/ 
 
 ## How to prepare the instance for a client:
 1. Go to the AWS AMI's (Amazon Machine Images). Select the Rshiny Server Image. Go to Actions>Launch

@@ -80,7 +80,7 @@ navigation:
   - title: scRNA analysis prepare, part 2
     url: data_analysis/scrna_analysis_prepare2_fixed
   - title: Monocle
-    url: data_analysis/adv_scrnaseq_monocle_fixed
+    url: data_analysis/adv_scrnaseq_monocle
   - title: VDJ T cell and B cell analysis
     url: data_analysis/VDJ_Analysis_fixed
   - title: Velocity  analysis
